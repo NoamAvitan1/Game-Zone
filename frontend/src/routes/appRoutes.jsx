@@ -71,7 +71,7 @@ export const AppRoutes = () => {
 
   return (
     <ThemeContext.Provider value={{theme,changeTheme}}>
-      <div className='app-provider' data-theme={theme} >
+      <div className='app-provider' data-theme={theme}>
           <RouterProvider router={router}/>
       </div>
     </ThemeContext.Provider>
