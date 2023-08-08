@@ -1,0 +1,80 @@
+.CandyCrush{
+    display: flex;
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    height: 750px;
+}
+
+.CandyCrush .game{
+    width: 445px;
+    height: 445px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.CandyCrush .game .img{
+    width: 55px;
+    height: 55px;
+    cursor: grab;
+}
+
+.CandyCrush .score{
+    color: var(--primary);
+    font-size: 25px;
+}
+
+@media(width > 500px){
+    .CandyCrush .game{
+        width: 480px;
+        height: 480px;
+    }
+    .CandyCrush .game .img{
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media(width > 650px){
+    .CandyCrush .game{
+        width: 520px;
+        height: 520px;
+    }
+    .CandyCrush .game .img{
+        width: 65px;
+        height: 65px;
+    }
+    .CandyCrush .score{
+        font-size: 28px;
+    }
+}
+
+@media(width > 800px){
+    .CandyCrush .game{
+        width: 560px;
+        height: 560px;
+    }
+    .CandyCrush .game .img{
+        width: 70px;
+        height: 70px;
+    }
+}
+
+@media(width > 1000px){
+    .CandyCrush .game{
+        width: 640px;
+        height: 640px;
+    }
+    .CandyCrush .game .img{
+        width: 80px;
+        height: 80px;
+    }
+    .CandyCrush .score{
+        font-size: 35px;
+    }
+}
+
+
+
