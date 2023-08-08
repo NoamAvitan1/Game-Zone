@@ -41,7 +41,7 @@ export const AppRoutes = () => {
         <Route path='/puzzleGame' element={<PuzzleGame/>}/>
         <Route path='/circlesFight' element={<CirclesFight/>}/>
         <Route path='/breakOutGame' element={<BreakOutGame/>}/>
-        <Route path='candyCrushGame' element={<Candy/>}/> 
+        <Route path='/candyCrushGame' element={<Candy/>}/> 
 
         <Route path='/account' element={<Account/>}/>
         <Route path='/admin' element={<AdminMenagment/>}/>
