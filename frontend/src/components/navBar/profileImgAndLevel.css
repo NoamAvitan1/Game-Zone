@@ -7,6 +7,7 @@
     justify-content: center;
     align-items: center;
     margin-right: 1vw;
+    cursor: pointer;
 }
 .ProfileImgAndLevel .profile-img-border{
     height: 50px;

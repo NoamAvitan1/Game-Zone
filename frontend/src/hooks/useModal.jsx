@@ -9,7 +9,7 @@ const UseModal = ({content,close}) => {
         
         <div className='modal-content'>
             {content}
-            <button 
+            <button style={{cursor:'pointer'}}
                 onClick={()=> close()}
                 className='modal-close' >
                     <AiOutlineClose/>
