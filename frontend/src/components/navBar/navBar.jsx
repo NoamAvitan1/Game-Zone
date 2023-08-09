@@ -22,12 +22,13 @@ import SwichTheme from "./swichTheme";
 
 export default function NavBar() {
   const [open_user_menu,setOpenUserMenu] = useState(false);
-  const {user} = useUser(); 
+  const {user , resetError} = useUser(); 
   const [modal,setModal] = useState(null);
   const { theme, changeTheme } = useContext(ThemeContext);
 
   const closeModal = () => {
       setModal(null);
+      resetError(null);
   }
   const getModal = (content) => {
     const modalContent = useModal(content,closeModal);

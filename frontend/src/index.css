@@ -15,12 +15,16 @@
     --dark-bg : white ;
     --light-bg : #0C0D14;
 }
+button{
+    padding-inline: 5px;
+}
 button:disabled{
     cursor: not-allowed;
     opacity: 0.5;
 }
 input{
     background-color: transparent;
+
 }
 
 .modal-container{

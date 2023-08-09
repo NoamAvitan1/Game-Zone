@@ -21,7 +21,13 @@ import useUser from '../../../hooks/useUser';
 
 
 export default function PuzzleGameStart({level,image,box_size}) {
-    const [piecesArr, setPiecesArr] = useState([
+    const [piecesArr, setPiecesArr] = useState(null);
+    const [gameDone,setGameDone] = useState(null);
+    const {user , updateXp} = useUser();
+    const piecesRefs = [useRef(),useRef(),useRef(),useRef(),useRef(),useRef(),useRef(),useRef(),useRef()];
+
+    const initialGame = () => {
+        setPiecesArr([
             {found:false,piece:topLeft,position:"0% 0%",height:"100px",width:"100px",top:0,left:0},
             {found:false,piece:topCenter,position:"41% 0%",height:"100px",width:"130px",top:0,left:30},
             {found:false,piece:topRight,position:"100% 0%",height:"100px",width:"130px",top:0,left:30},
@@ -32,10 +38,7 @@ export default function PuzzleGameStart({level,image,box_size}) {
             {found:false,piece:bottomCenter,position:"50% 100%",height:"130px",width:"160px",top:60,left:30},
             {found:false,piece:bottomRight,position:"100% 100%",height:"100px",width:"100px",top:30,left:30}
         ]);
-    const [gameDone,setGameDone] = useState(null);
-    const {user , updateXp} = useUser();
-
-    const piecesRefs = [useRef(),useRef(),useRef(),useRef(),useRef(),useRef(),useRef(),useRef(),useRef()];
+    }
 
     const checkPiece = (event,i) => {
         const tx = piecesRefs[i].current.getBoundingClientRect().left + piecesArr[i].left;
@@ -65,22 +68,27 @@ export default function PuzzleGameStart({level,image,box_size}) {
                 message={"GOOD GAME"} 
                 restart={()=>{
                     setGameDone(null);
-                    setPiecesArr([...piecesArr.map((p) => ({...p,found:false}))]);
+                    initialGame();
+                    // setPiecesArr([...piecesArr.map((p) => ({...p,found:false}))]);
                 }} />);
             if(user) updateXp(level == "easy" ? 100 : 200);
         }
     }
 
-    useEffect(()=>checkWining(),[piecesArr]);
+    useEffect(()=>(piecesArr ? checkWining() : console.log("loading")),[piecesArr]);
+    useEffect(()=>initialGame(),[]);
   return (
         
         <div className='PuzzleGame'>
             {gameDone && gameDone}
+            
             <div className="slice-images">
                 {piecesArr && piecesArr.map((p,i)=>(
                     <Draggable 
                         key={i}
-                        onDrag={(e)=>checkPiece(e,i)}>
+                        // onDrag={(e)=>checkPiece(e,i)}
+                        onStop={(e)=>checkPiece(e,i)}
+                        >
 
                         <div className='slice' 
                         style={{
@@ -107,7 +115,7 @@ export default function PuzzleGameStart({level,image,box_size}) {
             <div className='full-image'>
             
                 <div className='slice-image'>
-                    {piecesRefs.map((ref,i)=>
+                    {piecesArr && piecesRefs.map((ref,i)=>
                         <div 
                         ref={ref}
                         className='sliced' 

@@ -5,6 +5,7 @@ import './puzzleCollection.css';
 import SkeletonElement from '../../reusfullComponents/skeletons/skeletonElement';
 //  HOOKS
 import useCloudinaryImages from '../../../hooks/useCloudinaryImages';
+//  ASSETS
 
 
 export default function PuzzleCollection() {

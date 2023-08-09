@@ -9,17 +9,20 @@ import useUser from '../../../hooks/useUser';
 import useMemoryGame from '../../../hooks/useMemoryGame'
 import { apiGet } from '../../../services/apiRequests';
 
+import SkeletonElement from '../../reusfullComponents/skeletons/skeletonElement';
+
 //style
 import './memoryGameStart.css';
 
 
 export default function MemoryGameStart() {
     const [level,setLevel] = useState(null);
-    const {currentGame,memoryLevels} = useMemoryGame();
+    const {currentGame,memoryLevels } = useMemoryGame();
     const [memoryCards,setMemoryCards]=useState(null); 
     const {user,updateXp} = useUser();
     const [gameDone,setGameDone] = useState(null);
-
+    const [loading,setLoading] = useState(true);
+    const [error,setError] = useState(null);
     const [turns,setTurns] = useState(0);
     const [firstCard,setFirstCard] = useState(null);
     const [secondCard,setSecondCard] = useState(null);
@@ -38,6 +41,7 @@ export default function MemoryGameStart() {
 
     const getMemoryCards = async () => {
       try {
+
         let {data} = await apiGet(`${currentGame.api}${level}`,currentGame.headers);
         //getting tha image array
         for (let i = 0; i < currentGame.keys.length ; i++) {
@@ -55,7 +59,9 @@ export default function MemoryGameStart() {
           }
         }
         updateMemoryCards(data);
+        setLoading(false);
       } catch (error) {
+        setError(error);
         console.log(error);
       }
     }
@@ -150,7 +156,8 @@ export default function MemoryGameStart() {
       }
     },[memoryCards])
 
-
+    console.log(loading);
+    console.log(level);
 
   return (
     <div className='MemoryGameStart'>
@@ -168,7 +175,15 @@ export default function MemoryGameStart() {
                 disabled={disabled} 
                 key={i} />
             ))      
-            : <p>loading</p>
+            : (loading 
+
+                ?  Array(level * 2).fill().map((_,k) => (
+                  <div className="MemoryCard" key={k}>
+                    <SkeletonElement  type={"fit"} />
+                  </div>
+                  ))
+
+                : <p>{error}</p> )
           }
           </div>
         </div>

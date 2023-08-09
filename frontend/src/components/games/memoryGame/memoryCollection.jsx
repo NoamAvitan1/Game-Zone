@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import useMemoryGame from '../../../hooks/useMemoryGame'
 import './memoryCollection.css'
-import SkeletonElement from '../../reusfullComponents/skeletons/SkeletonElement';
+import SkeletonElement from '../../reusfullComponents/skeletons/skeletonElement';
 
 
 export default function MemoryCollection() {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { acceptFriend, addFriends, login,signUp,stayLogin, updateUser,removeFriend,logout} from '../redux/features/userSlice';
+import { acceptFriend, addFriends, login,signUp,stayLogin, updateUser,removeFriend,logout, setError} from '../redux/features/userSlice';
 import { apiGet, apiPost } from '../services/apiRequests';
 import { RESET_USER_PASSWORD, USERS_LIST } from '../constants/urls';
 
@@ -65,6 +65,9 @@ export default function useUser() {
 
     }
 
+    const resetError = (error) => {
+      dispatch(setError(error));
+    }
 
 
 
@@ -84,5 +87,6 @@ export default function useUser() {
       updateXp,
       removeFriendRequest,
       userLogOut,
+      resetError
     };
   }

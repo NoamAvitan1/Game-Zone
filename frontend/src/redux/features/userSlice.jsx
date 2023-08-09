@@ -177,10 +177,12 @@ const userSlice = createSlice({
 
   },
   reducers: {
-  
+    setError: (state,action) => {
+      state.error = action.payload;
+    }
   },
 });
 //acceptFriend
 
-export const {} = userSlice.actions;
+export const {setError} = userSlice.actions;
 export default userSlice.reducer;
