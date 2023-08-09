@@ -2,11 +2,13 @@ import React from 'react'
 //style
 import './selectLevel.css';
 
-export default function SelectLevel({handleChoice,options}) {
+export default function SelectLevel({handleChoice,options,aditionalStyle}) {
     
     console.log(options);
   return (
-    <div className='SelectLevel'>
+    <div 
+      style={aditionalStyle ? aditionalStyle : {}}
+      className='SelectLevel'>
         <h2>Pick Level</h2>
         <div className="level-options">
             {options && options.map((option,i)=>(

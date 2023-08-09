@@ -6,7 +6,7 @@ import SkeletonElement from '../../reusfullComponents/skeletons/skeletonElement'
 //  HOOKS
 import useCloudinaryImages from '../../../hooks/useCloudinaryImages';
 //  ASSETS
-
+import puzzleCover from '../../../assets/icons/puzzleCover.svg';
 
 export default function PuzzleCollection() {
     const {setImage,data:images_collection,selectPage,loading,error} = useCloudinaryImages();
@@ -24,6 +24,7 @@ export default function PuzzleCollection() {
             key={image.name}
             onClick={()=>setImage(image)}>
             <img  src={image.src + image.route + image.name} className='PuzzleCollection-img' alt="image preview" />
+            <img src={puzzleCover} className='PuzzleCollection-puzzle-cover' alt="puzzle cover" />
           </div>
           ))
         : (loading 

@@ -13,12 +13,14 @@ import useCloudinaryImages from '../../../hooks/useCloudinaryImages';
 //services
 import { resizeCloudinaryImage } from '../../../services/resizeCloudinaryImage'; 
 import { resizeImage } from '../../../services/resizeInputImage';
+import { useNavigate } from 'react-router-dom';
 
 export default function PuzzleGame() {
   const [puzzle_image,setPuzzleImage] = useState(null);
   const box_size = 300;//window.innerWidth < 600 ? 300 : 600; 
   const {currentImage,setImage,page,pages,selectPage} = useCloudinaryImages();
   const [level,setLevel] = useState(null);
+  const navigate = useNavigate();
   console.log(box_size);
   
 
@@ -53,12 +55,15 @@ export default function PuzzleGame() {
                 setImage(null);
               }} />
               {level 
-                ?   <PuzzleGameStart level={level} image={puzzle_image} box_size={box_size} />
-                :   <SelectLevel options={["easy","hard"]} handleChoice={setLevel} />}
+                ?   <PuzzleGameStart setLevel={setLevel} level={level} image={puzzle_image} box_size={box_size} />
+                :   <SelectLevel aditionalStyle={{marginTop:'30vh'}}  options={["easy","hard"]} handleChoice={setLevel} />}
             </div>
             :
             <div className="">
-              <NavBackButton/>
+              <NavBackButton onClick={()=>{
+                setImage(null);
+                navigate(-1);
+              }} />
               <PuzzleImgInput handleImageChange={handleImageChange} />
               <PuzzleCollection />
               <Pagination page={page} pages={pages} setPage={(p)=>selectPage(p)}/>

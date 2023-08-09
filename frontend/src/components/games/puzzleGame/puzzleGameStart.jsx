@@ -11,7 +11,6 @@ import centerRight from '../../../assets/images/puzzle9x9/pieces/centerRight.png
 import bottomLeft from '../../../assets/images/puzzle9x9/pieces/bottomLeft.png';
 import bottomCenter from '../../../assets/images/puzzle9x9/pieces/bottomCenter.png';
 import bottomRight from '../../../assets/images/puzzle9x9/pieces/bottomRight.png';
-import gameImage from '../../../assets/images/puzzle9x9/images/demo.jpg';
 //  Style
 import './puzzleGameStart.css';
 //  Components
@@ -20,24 +19,26 @@ import EndedGameAllert from '../../reusfullComponents/endedGameAllert/endedGameA
 import useUser from '../../../hooks/useUser';
 
 
-export default function PuzzleGameStart({level,image,box_size}) {
+export default function PuzzleGameStart({level,image,box_size,setLevel}) {
     const [piecesArr, setPiecesArr] = useState(null);
     const [gameDone,setGameDone] = useState(null);
     const {user , updateXp} = useUser();
     const piecesRefs = [useRef(),useRef(),useRef(),useRef(),useRef(),useRef(),useRef(),useRef(),useRef()];
 
     const initialGame = () => {
-        setPiecesArr([
-            {found:false,piece:topLeft,position:"0% 0%",height:"100px",width:"100px",top:0,left:0},
-            {found:false,piece:topCenter,position:"41% 0%",height:"100px",width:"130px",top:0,left:30},
-            {found:false,piece:topRight,position:"100% 0%",height:"100px",width:"130px",top:0,left:30},
-            {found:false,piece:centerLeft,position:"0% 41%",height:"130px",width:"130px",top:30,left:0},
-            {found:false,piece:center,position:"59% 41%",height:"130px",width:"130px",top:30,left:30},
-            {found:false,piece:centerRight,position:"100% 50%",height:"160px",width:"100px",top:30,left:30},
-            {found:false,piece:bottomLeft,position:"0% 100%",height:"130px",width:"100px",top:60,left:0},
-            {found:false,piece:bottomCenter,position:"50% 100%",height:"130px",width:"160px",top:60,left:30},
-            {found:false,piece:bottomRight,position:"100% 100%",height:"100px",width:"100px",top:30,left:30}
-        ]);
+        let w = window.innerWidth / 2 - 80 + 10;
+        let init = [
+            {found:false,placed:{b:130,l:w},piece:topLeft,position:"0% 0%",height:"100px",width:"100px",top:0,left:0},
+            {found:false,placed:{b:0,l:w - 130},piece:topCenter,position:"41% 0%",height:"100px",width:"130px",top:0,left:30},
+            {found:false,placed:{b:260,l:w + 130},piece:topRight,position:"100% 0%",height:"100px",width:"130px",top:0,left:30},
+            {found:false,placed:{b:0,l:w + 130},piece:centerLeft,position:"0% 41%",height:"130px",width:"130px",top:30,left:0},
+            {found:false,placed:{b:130,l:w + 130},piece:center,position:"59% 41%",height:"130px",width:"130px",top:30,left:30},
+            {found:false,placed:{b:130,l:w - 130},piece:centerRight,position:"100% 50%",height:"160px",width:"100px",top:30,left:30},
+            {found:false,placed:{b:0,l:w},piece:bottomLeft,position:"0% 100%",height:"130px",width:"100px",top:60,left:0},
+            {found:false,placed:{b:260,l:w},piece:bottomCenter,position:"50% 100%",height:"130px",width:"160px",top:60,left:30},
+            {found:false,placed:{b:260,l:w - 130},piece:bottomRight,position:"100% 100%",height:"100px",width:"100px",top:30,left:30}
+        ]
+        setPiecesArr([...init]);
     }
 
     const checkPiece = (event,i) => {
@@ -68,8 +69,7 @@ export default function PuzzleGameStart({level,image,box_size}) {
                 message={"GOOD GAME"} 
                 restart={()=>{
                     setGameDone(null);
-                    initialGame();
-                    // setPiecesArr([...piecesArr.map((p) => ({...p,found:false}))]);
+                    setLevel(null);
                 }} />);
             if(user) updateXp(level == "easy" ? 100 : 200);
         }
@@ -79,7 +79,7 @@ export default function PuzzleGameStart({level,image,box_size}) {
     useEffect(()=>initialGame(),[]);
   return (
         
-        <div className='PuzzleGame'>
+        <div className='PuzzleGameStart'>
             {gameDone && gameDone}
             
             <div className="slice-images">
@@ -98,6 +98,9 @@ export default function PuzzleGameStart({level,image,box_size}) {
                             maskImage:`url(${p.piece})`,
                             maskRepeat:'no-repeat',
                             zIndex:'3',
+                            bottom:p.placed.b,
+                            left:p.placed.l
+                            // left:p.placed.t
                             }} >
                                 <div 
                                     style={{
