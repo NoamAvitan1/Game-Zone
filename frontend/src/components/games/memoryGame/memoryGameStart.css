@@ -25,6 +25,7 @@
     grid-template-columns: repeat(3,25vw);
     gap: 5vw;
     margin-bottom: -3vh;
+    cursor: pointer;
 }
 @media(width > 500px){
     .MemoryGameStart .memory-cards-container{

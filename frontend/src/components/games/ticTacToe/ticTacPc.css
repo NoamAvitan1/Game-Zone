@@ -47,6 +47,7 @@
     margin-top: 20px;
     font-size: 24px;
     font-weight: bold;
+    color: white;
   }
   .TicTacPc .button {
 
@@ -61,7 +62,6 @@
     padding: 8px 15px;
     border-radius: 50px;
     border: none;
-    transition: transform 0.3s ease;
   }
 
   .TicTacPc .button:hover {

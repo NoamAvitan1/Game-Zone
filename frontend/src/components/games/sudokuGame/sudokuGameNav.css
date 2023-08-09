@@ -11,10 +11,13 @@
     text-transform: capitalize;
     font-size: 1em;
     color: white;
+    cursor: pointer;
+    padding: 4px;
 }
 
 .SudokuGameNav .all{
     background-color: var(--primary);
+    cursor: pointer;
 }
 
 .SudokuGameNav .easy{

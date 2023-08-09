@@ -5,6 +5,7 @@
     gap:30px ;
     width: 100vw;
     margin: auto;
+    cursor: pointer;
 }
 
 .SlidePuzzleCollection .image-preview{
