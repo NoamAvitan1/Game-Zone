@@ -5,6 +5,7 @@
     grid-template-columns: repeat(2,40vw);
     gap: 5vw;
     margin-block: 10px;
+    cursor: pointer;
 }
 .SudokuCollection .sudoku-preview{
     display: grid;

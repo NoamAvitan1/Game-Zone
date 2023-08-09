@@ -24,8 +24,9 @@ export default function SudokuGame() {
             setSudokuTemplate(sudoku.template);
             navigate(`/sudokuGame/${sudoku.level}`);
         }} />
-        {pages &&
-        <Pagination page={page} setPage={selectPage} pages={pages} />}
+        {pages && <div className='pagination'>
+        <Pagination page={page} setPage={selectPage} pages={pages} /> </div>}
+
     </div>
   )
 }

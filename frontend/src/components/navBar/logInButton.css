@@ -8,6 +8,7 @@
     margin-right: 15px;
     font-weight: bold;
     height: fit-content;
+    cursor: pointer;
 }
 .LogInButton:hover{
     box-shadow: 2px 2px 20px 1px var(--primary);

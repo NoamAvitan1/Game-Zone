@@ -11,6 +11,8 @@
     border-radius: 3px;
     font-size: 1rem;
     margin: 3px;
+    cursor: pointer;
+    padding: 4px;
 }
 .Pagination button:hover{
     background-color: var(--primary);
