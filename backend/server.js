@@ -23,7 +23,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: 'https://jocular-mermaid-934913.netlify.app',
+  origin: 'https://gamez4u.netlify.app',
   credentials: true
 }));
 app.use(cookieParser());
