@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3003";
+const API_URL = "https://long-ox-hat.cyclic.app";
 
 
 //* user

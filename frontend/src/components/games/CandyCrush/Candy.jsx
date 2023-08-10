@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./CandyCrush.css";
+import blueCandy from '../../../assets/images/games/blue-candy.png'
+import greenCandy from '../../../assets/images/games/green-candy.png'
+import orangeCandy from '../../../assets/images/games/orange-candy.png'
+import purpleCandy from '../../../assets/images/games/purple-candy.png'
+import redCandy from '../../../assets/images/games/red-candy.png'
+import yellowCandy from '../../../assets/images/games/yellow-candy.png'
+import blank from '../../../assets/images/games/blank.png'
+
 
 export default function Candy() {
   const [boardColor, setBoardColor] = useState([]);
@@ -7,7 +15,7 @@ export default function Candy() {
   const [squareReplace, setSquareReplace] = useState(null);
   const [score,setScore] = useState(0);
 
-  const colors = ["blue", "green", "orange", "purple", "red", "yellow"];
+  const colors = [blueCandy, greenCandy, orangeCandy, purpleCandy, redCandy, yellowCandy];
 
   const createBoard = () => {
     let newArray = [];
@@ -22,13 +30,13 @@ export default function Candy() {
     for (let i = 0; i <= 55; i++) {
       const firstRow = [0, 1, 2, 3, 4, 5, 6, 7];
       const isFirst = firstRow.includes(i);
-      if (isFirst && boardColor[i] === "") {
+      if (isFirst && boardColor[i] === blank) {
         let randomNumber = Math.floor(Math.random() * colors.length);
         boardColor[i] = colors[randomNumber];
       }
-      if (boardColor[i + 8] === "") {
+      if (boardColor[i + 8] === blank) {
         boardColor[i + 8] = boardColor[i];
-        boardColor[i] = "";
+        boardColor[i] = blank;
       }
     }
   };
@@ -37,8 +45,9 @@ export default function Candy() {
     for (let i = 0; i <= 47; i++) {
       let column = [i, i + 8, i + 8 * 2];
       let decideColor = boardColor[i];
-      if (column.every((square) => boardColor[square] === decideColor)) {
-        column.forEach((square) => (boardColor[square] = ""));
+      let isBlank  = boardColor[i] === blank
+      if (column.every((square) => boardColor[square] === decideColor && !isBlank)) {
+        column.forEach((square) => (boardColor[square] = blank));
         setScore((score) => score + 3)
         return true;
       }
@@ -52,9 +61,10 @@ export default function Candy() {
       const notValid = [
         6, 7, 14, 15, 22, 23, 30, 30, 38, 39, 46, 47, 54, 63, 64,
       ];
+      let isBlank  = boardColor[i] === blank
       if (notValid.includes(i)) continue;
-      if (row.every((square) => boardColor[square] === decideColor)) {
-        row.forEach((square) => (boardColor[square] = ""));
+      if (row.every((square) => boardColor[square] === decideColor && !isBlank)) {
+        row.forEach((square) => (boardColor[square] = blank));
         setScore((score) => score + 3)
         return true;
       }
@@ -65,8 +75,9 @@ export default function Candy() {
     for (let i = 0; i <= 39; i++) {
       let column = [i, i + 8, i + 8 * 2, i + 8 * 3];
       let decideColor = boardColor[i];
-      if (column.every((square) => boardColor[square] === decideColor)) {
-        column.forEach((square) => (boardColor[square] = ""));
+      let isBlank  = boardColor[i] === blank
+      if (column.every((square) => boardColor[square] === decideColor && !isBlank)) {
+        column.forEach((square) => (boardColor[square] = blank));
         setScore((score) => score + 4)
         return true;
       }
@@ -81,9 +92,10 @@ export default function Candy() {
         5, 6, 7, 13, 14, 15, 21, 22, 23, 29, 30, 31, 37, 38, 39, 45, 46, 47, 53,
         54, 55, 62, 63, 64,
       ];
+      let isBlank  = boardColor[i] === blank
       if (notValid.includes(i)) continue;
-      if (row.every((square) => boardColor[square] === decideColor)) {
-        row.forEach((square) => (boardColor[square] = ""));
+      if (row.every((square) => boardColor[square] === decideColor && !isBlank)) {
+        row.forEach((square) => (boardColor[square] = blank));
         setScore((score) => score + 4)
         return true;
       }
@@ -129,8 +141,8 @@ export default function Candy() {
       squareReplace.getAttribute('data-id')
     );
 
-    boardColor[squareBeingReplacedId] = squareDrugged.style.backgroundColor;
-    boardColor[squareBeingDraggedId] = squareReplace.style.backgroundColor;
+    boardColor[squareBeingReplacedId] = squareDrugged.getAttribute('src');
+    boardColor[squareBeingDraggedId] = squareReplace.getAttribute('src');
 
     const valid = [
       squareBeingDraggedId - 1,
@@ -155,8 +167,8 @@ export default function Candy() {
       setSquareReplace(null);
     } else {
       alert("Impossible move")
-      boardColor[squareBeingReplacedId] = squareReplace.style.backgroundColor;
-      boardColor[squareBeingDraggedId] = squareDrugged.style.backgroundColor;
+      boardColor[squareBeingReplacedId] = squareReplace.getAttribute('src');
+      boardColor[squareBeingDraggedId] = squareDrugged.getAttribute('src');
       setBoardColor([...boardColor]);
     }
   };
@@ -167,8 +179,8 @@ export default function Candy() {
         {boardColor.map((color, index) => (
           <img
             className="img"
+            src={color}
             key={index}
-            style={{ backgroundColor: color }}
             alt={color}
             data-id={index}
             draggable={true}

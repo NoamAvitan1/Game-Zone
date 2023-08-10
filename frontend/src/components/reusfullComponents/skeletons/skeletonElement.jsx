@@ -1,5 +1,5 @@
 import React from 'react'
-import './skeleton.css';
+import './Skeleton.css';
 
 export default function SkeletonElement({type}) {
   return (

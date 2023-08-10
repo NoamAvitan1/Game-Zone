@@ -21,6 +21,7 @@
     border: none;
     background-color: transparent;
     color: var(--light-bg);
+    cursor: pointer;
 }
 
 .LogInForm .login-form{
@@ -71,18 +72,21 @@
     padding: 10px 30px;
     border-radius: 50px;
     color: white;
+    cursor: pointer;
 }
 
 .LogInForm .eye-icon{
     position: absolute;
     right: 4px;
     color: white;
+    cursor: pointer;
 }
 
 .LogInForm .lock-icon {
     position: absolute;
     right: 22px;
     color: white;
+    cursor: pointer;
 }
 .LogInForm .email-icon{
     position: absolute;

@@ -1,6 +1,6 @@
 //react imports
 import React,{ useEffect, useRef, useState } from "react";
-import useSendEmail from '../../hooks/UseSendEmail';
+import useSendEmail from '../../hooks/useSendEmail';
 import ResetPasswordForm from "./resetPasswordForm";
 import ResetPasswordValidation from "./resetPasswordValidation";
 import NavBackButton from '../../components/reusfullComponents/navigateBackButton/navBackButton';

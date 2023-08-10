@@ -1,7 +1,7 @@
 import React from 'react'
 import LogInForm from "../../pages/logIn/logInForm";
 //style
-import './loginButton.css'
+import './logInButton.css'
 
 export default function LogInButton({updateModal,closeModal}) {
 
