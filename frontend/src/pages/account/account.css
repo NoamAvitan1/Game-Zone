@@ -29,6 +29,7 @@
     background-color: var(--secondary);
     padding: 2px;
     border-radius: 3px  10px 3px 3px ;
+    border: none;
 }
 .Account .account-user-details{
     margin: auto;
