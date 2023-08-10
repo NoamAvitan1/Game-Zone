@@ -19,7 +19,7 @@ import EndedGameAllert from '../../reusfullComponents/endedGameAllert/endedGameA
 import useUser from '../../../hooks/useUser';
 
 
-export default function PuzzleGameStart({level,image,box_size,setLevel}) {
+export default function PuzzleGameStart({level,image,setLevel}) {
     const [piecesArr, setPiecesArr] = useState(null);
     const [gameDone,setGameDone] = useState(null);
     const {user , updateXp} = useUser();

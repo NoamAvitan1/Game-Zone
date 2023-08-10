@@ -55,7 +55,7 @@ export default function PuzzleGame() {
                 setImage(null);
               }} />
               {level 
-                ?   <PuzzleGameStart setLevel={setLevel} level={level} image={puzzle_image} box_size={box_size} />
+                ?   <PuzzleGameStart setLevel={setLevel} level={level} image={puzzle_image}  />
                 :   <SelectLevel aditionalStyle={{marginTop:'30vh'}}  options={["easy","hard"]} handleChoice={setLevel} />}
             </div>
             :

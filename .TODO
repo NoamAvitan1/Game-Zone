@@ -2,21 +2,8 @@
                                          TODO
  
     *Main*
-!1. 
-    when getting out from puzzle game or slifing puzzle to cancel thr selected image from cloudinary slice
-
-
-    *Puzzle* 
 1.
-    make responsive
-2.
-    define restart for game ended allert
-    (throw the pieces and change their found propertie to false)
-3.
-    cover the collection with puzzlr skeletons
-
-
-
+    skeletons in mensgment
 
     *onFuture*
 1.

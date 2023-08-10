@@ -14,6 +14,11 @@
 .navBack{
     color: var(--light-bg) !important;
 }
+.Account .name-icon-container{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
 .Account .account-edit-icon{
     position: absolute;
     z-index: 4;

@@ -6,7 +6,7 @@ import { apiGet, apiPost, apiPut } from "../../services/apiRequests";
 export const login = createAsyncThunk("user/login", async (userData) => {
   try {
     const response = await apiPost(LOGIN_USER, userData);
-    console.log(response.data);
+    console.log(response);
     return response.data;
   } catch (error) {
     console.log(error.response.data.error);

@@ -60,13 +60,15 @@ export default function Account() {
                 }} 
                 className='account-edit-icon'/>
             </div>
-            
-            <h2 className='user-name'>{user.name}</h2>
+            <div className="name-icon-container">
+              <h2 className='user-name'>{user.name}</h2>
 
-              <div className="level-container-user">
-                <IoLogoGameControllerB className='level-icon'/>
-                <p className='level-user'>{user.level}</p> 
-              </div>
+                <div className="level-container-user">
+                  <IoLogoGameControllerB className='level-icon'/>
+                  <p className='level-user'>{user.level}</p> 
+                </div>
+            </div>
+
               <div className="xp-container">
                 <progress value={xp_progress} max={100} /> 
                 <div className="xp-details">
