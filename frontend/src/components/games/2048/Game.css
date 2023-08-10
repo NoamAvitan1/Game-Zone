@@ -1,4 +1,4 @@
-.Board {
+.Game {
     color: white;
     display: flex;
     flex-direction: column;
@@ -8,20 +8,15 @@
     gap: 10px;
 }
 
-.Board .score{
-    display: flex;
 
-}
-
-.Board .grid {
+.Game .grid {
     display: flex;
     flex-wrap: wrap;
-    width: 430px;
-    height: 430px;
-    gap: 10px;
+    width: 400px;
+    height: 400px;
 }
 
-.Board .grid .div{
+.Game .grid .div{
     width: 100px;
     height: 100px;
     background-color: aqua;
