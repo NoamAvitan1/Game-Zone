@@ -39,6 +39,7 @@
     padding: 3px;
     border-radius: 5px;
     margin:2vh;
+    color: white;
 }
 @media(width > 500px){
     .AddImageInput .imgs-preview{

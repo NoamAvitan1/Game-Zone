@@ -53,20 +53,26 @@ export default function Account() {
           <div className="account-user-details">
             <div className="account-img">
               <img src={user.image} className='account-profile-img' alt="profile img" />
-              <AiOutlineEdit 
-                onClick={()=>{
-                  const m = useModal(<EditAccount/>,()=>setModal(null));
-                  setModal(m);
-                }} 
-                className='account-edit-icon'/>
-            </div>
-            
-            <h2 className='user-name'>{user.name}</h2>
+              <button
+                className='account-edit-icon'>
+                <AiOutlineEdit 
+                  onClick={()=>{
+                    const m = useModal(<EditAccount/>,()=>setModal(null));
+                    setModal(m);
+                  }} 
+                  />
+              </button>
 
-              <div className="level-container-user">
-                <IoLogoGameControllerB className='level-icon'/>
-                <p className='level-user'>{user.level}</p> 
-              </div>
+            </div>
+            <div className="name-icon-container">
+              <h2 className='user-name'>{user.name}</h2>
+
+                <div className="level-container-user">
+                  <IoLogoGameControllerB className='level-icon'/>
+                  <p className='level-user'>{user.level}</p> 
+                </div>
+            </div>
+
               <div className="xp-container">
                 <progress value={xp_progress} max={100} /> 
                 <div className="xp-details">

@@ -4,10 +4,9 @@
     width: 80vw;
     padding-inline: 10vw;
     gap: 10vw;
-    max-height: 80vh;
-    overflow-y: auto;
 }
 .PuzzleCollection-image-preview{
+    position: relative;
     height: 35vw;
 }
 .PuzzleCollection-img{
@@ -17,6 +16,15 @@
 .PuzzleCollection-img-skeleton{
     height: 10vw;
     width: 10vw;
+}
+.PuzzleCollection-puzzle-cover{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-weight: bolder;
+    z-index: 2;
 }
 
 @media (width > 700px) {

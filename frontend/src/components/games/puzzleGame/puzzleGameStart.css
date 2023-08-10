@@ -1,18 +1,19 @@
-.PuzzleGame{
+.PuzzleGameStart{
     display: flex;
     width: 100vw;
     justify-content: center;
-    height: 80vh;
     align-items: center;
+    padding-bottom: 45vh;
+    margin-top: 10vh;
 }
-.PuzzleGame .slice-image{
+.PuzzleGameStart .slice-image{
     width: 300px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.PuzzleGame .game{
+.PuzzleGameStart .game{
     margin-top: 20px;
     display: flex;
     justify-content: space-around;
@@ -20,17 +21,17 @@
     width: 100%;
 }
 
-.PuzzleGame .slice{
+.PuzzleGameStart .slice{
     cursor: grab ;
-    position: absolute;
+    position: absolute; 
     transition: opacity 1s ease, visibility 1s ease;
-    bottom: 10vh;
+
 }
-.PuzzleGame .img{
+.PuzzleGameStart .img{
     position: absolute;
     opacity: 0.3;
 }
-.PuzzleGame .full-image{
+.PuzzleGameStart .full-image{
     width: fit-content;
     border: 2px solid var(--light-bg);
 }

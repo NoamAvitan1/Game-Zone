@@ -3,10 +3,11 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 10vh;
+    margin-top: 3vh;
 }
 .PuzzleImgInput-close{
     padding-block: 20px;
+    margin-top: 30px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -39,6 +40,6 @@
         margin-bottom: 10vh;
     }
     .PuzzleImgInput-open{
-        margin-top: 15vh;
+        margin-top: 7vh;
     }
 }

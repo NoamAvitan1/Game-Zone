@@ -12,6 +12,7 @@
 }
 .EditAccount h2{
     text-align: center;
+    color: var(--light-bg);
 }
 .EditAccount-err-img-input{
     border: red 1px solid;
@@ -38,6 +39,7 @@
 .EditAccount .update-button{
     margin-top: 4vh;
     background-color: var(--primary);
+    color: white;
     border: none;
     padding: 5px;
     border-radius: 5px;

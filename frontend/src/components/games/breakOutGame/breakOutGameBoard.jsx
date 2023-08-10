@@ -82,7 +82,10 @@ export default function BreakOutGameBoard({gameEnded , level}) {
             if (winningCheck()) gameEnded(player.score,"Good Game !");
 
             // check if losed
-            if (player.lives <= 0) gameEnded(player.score,"Game Over");
+            if (player.lives <= 0){ 
+              gameEnded(player.score,"Game Over");
+              console.log("game over");
+            };
 
 
             //check if the ball touches the buttom 
@@ -131,9 +134,26 @@ export default function BreakOutGameBoard({gameEnded , level}) {
             
 
 
-            if (player.lives > 0 && (bricks.length == 0 || !winningCheck()))requestAnimationFrame(render);
+            if (player.lives > 0 && (bricks.length == 0 || !winningCheck())){
+              requestAnimationFrame(render)
+            }else{
+              if (player.lives <= 0){ 
+                gameEnded(player.score,"Game Over");
+                console.log("game over");
+              };
+              if (winningCheck()) gameEnded(player.score,"Good Game !");
+            };
+
         }
-        if (player.lives > 0 && (bricks.length == 0 || !winningCheck()))render();
+        if (player.lives > 0 && (bricks.length == 0 || !winningCheck())){
+          render()
+        }else{
+          if (player.lives <= 0){ 
+            gameEnded(player.score,"Game Over");
+            console.log("game over");
+          };
+          if (winningCheck()) gameEnded(player.score,"Good Game !");
+        };
         
       
     },[]);
