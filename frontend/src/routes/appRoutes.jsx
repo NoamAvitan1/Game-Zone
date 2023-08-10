@@ -22,6 +22,7 @@ import Payment from '../pages/payment/payment';
 import BreakOutGame from '../components/games/breakOutGame/breakOutGame';
 import Candy from '../components/games/CandyCrush/Candy';
 import Board from '../components/games/2048/board';
+import { Game } from '../components/games/2048/Game';
 
 
 export const ThemeContext = createContext(null);
@@ -44,6 +45,7 @@ export const AppRoutes = () => {
         <Route path='/breakOutGame' element={<BreakOutGame/>}/>
         <Route path='/candyCrushGame' element={<Candy/>}/> 
         <Route path='/2048Game' element={<Board/>}/>
+        <Route path='/Game' element={<Game/>}/>
 
         <Route path='/account' element={<Account/>}/>
         <Route path='/admin' element={<AdminMenagment/>}/>
