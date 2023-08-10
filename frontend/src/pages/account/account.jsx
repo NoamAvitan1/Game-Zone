@@ -53,12 +53,16 @@ export default function Account() {
           <div className="account-user-details">
             <div className="account-img">
               <img src={user.image} className='account-profile-img' alt="profile img" />
-              <AiOutlineEdit 
-                onClick={()=>{
-                  const m = useModal(<EditAccount/>,()=>setModal(null));
-                  setModal(m);
-                }} 
-                className='account-edit-icon'/>
+              <button
+                className='account-edit-icon'>
+                <AiOutlineEdit 
+                  onClick={()=>{
+                    const m = useModal(<EditAccount/>,()=>setModal(null));
+                    setModal(m);
+                  }} 
+                  />
+              </button>
+
             </div>
             <div className="name-icon-container">
               <h2 className='user-name'>{user.name}</h2>
