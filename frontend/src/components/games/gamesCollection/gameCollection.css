@@ -2,9 +2,10 @@
 .GameCollection{
     display: grid;
     width: 95vw;
-    grid-template-columns: repeat(1,95vw);
+    grid-template-columns: repeat(2,45vw);
     text-align: center;
     row-gap: 5vw;
+    gap: 5vw;
     padding-bottom: 5vw;
 }
 .GameCollection > *{
@@ -14,13 +15,14 @@
 
     border-radius: 5px;
 
-    height: 20vw;
+    height: 30vw;
     border: 4px var(--secondary) solid;
     transform: rotate(0deg);
     transition: box-shadow ease-in-out 1s, transform ease-in-out 1s;
     display: flex;
     align-items: center;
     text-decoration: none;
+
 }
 .GameCollection p{
     margin: auto;
