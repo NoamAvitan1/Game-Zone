@@ -84,13 +84,19 @@ export default function PuzzleGameStart({level,image,setLevel}) {
             
             <div className="slice-images">
                 {piecesArr && piecesArr.map((p,i)=>(
-                    <Draggable 
-                        key={i}
-                        // onDrag={(e)=>checkPiece(e,i)}
-                        onStop={(e)=>checkPiece(e,i)}
-                        >
+                    // <Draggable 
+                    //     key={i}
+                    //     // onDrag={(e)=>checkPiece(e,i)}
+                        
+                    //     onStop={(e)=>checkPiece(e,i)}
+                    //     >
 
-                        <div className='slice' 
+                        <div 
+                        key={i}
+                        draggable
+                        onDragStart={(e) => console.log(e)}
+                        onTouchStart={(e)=> console.log(e)}
+                        className='slice' 
                         style={{
                             opacity:(p.found ? 0 : 1),
                             WebkitMaskImage:`url(${p.piece})`,
@@ -111,7 +117,7 @@ export default function PuzzleGameStart({level,image,setLevel}) {
                                         }}>
                                 </div>
                         </div> 
-                </Draggable>
+                // </Draggable>
                 ))}
             </div>
 

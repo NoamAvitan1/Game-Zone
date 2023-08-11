@@ -130,14 +130,14 @@ const loginUser = async (req, res) => {
     const refreshToken = generateToken({_id:user._id,role:user.role},"30m");
     const accessToken = generateToken({_id:user._id,role:user.role},"1000m");
 
-    res.cookie("refreshToken", refreshToken, {
-      httpOnly: true,
-      sameSite: "none",
-      maxAge: 3600000,
-      secure: true,
-    });
+    // res.cookie("refreshToken", refreshToken, {
+    //   httpOnly: true,
+    //   sameSite: "none",
+    //   maxAge: 3600000,
+    //   secure: true,
+    // });
     res.cookie("accessToken", accessToken, {
-      httpOnly: true,
+      httpOnly: false,
       sameSite: "none",
       maxAge: 3600000,
       secure: true,
@@ -171,14 +171,14 @@ const signUser = async (req, res) => {
     const refreshToken = generateToken({_id:user._id,role:"user"},"30m");
     const accessToken = generateToken({_id:user._id,role:"user"},"1000m");
 
-    res.cookie("refreshToken", refreshToken, {
-      httpOnly: true,
-      sameSite: "none",
-      maxAge: 3600000,
-      secure: true,
-    });
+    // res.cookie("refreshToken", refreshToken, {
+    //   httpOnly: true,
+    //   sameSite: "none",
+    //   maxAge: 3600000,
+    //   secure: true,
+    // });
     res.cookie("accessToken", accessToken, {
-      httpOnly: true,
+      httpOnly: false,
       sameSite: "none",
       maxAge: 3600000,
       secure: true,
@@ -251,13 +251,13 @@ const deleteUser = async (req, res) => {
 
 const logOut = async (req, res) => {
   try {
-     res.clearCookie("refreshToken",{
-      httpOnly: true,
-      sameSite: "none",
-      secure: true,
-    });
+    //  res.clearCookie("refreshToken",{
+    //   httpOnly: true,
+    //   sameSite: "none",
+    //   secure: true,
+    // });
      res.clearCookie("accessToken",{
-      httpOnly: true,
+      httpOnly: false,
       sameSite: "none",
       secure: true,
     });
