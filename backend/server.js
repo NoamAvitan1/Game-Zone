@@ -23,7 +23,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: ['https://gamez4u.netlify.app' , "http://localhost:5173/"],
+  origin: ['https://gamez4u.netlify.app' , "http://localhost:5173"],
   credentials: true
 }));
 app.use(cookieParser());

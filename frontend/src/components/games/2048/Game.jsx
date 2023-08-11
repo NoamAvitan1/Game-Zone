@@ -30,14 +30,22 @@ export const Game = () => {
     setBoard(newBoard);
   };
 
+  const checkEmpty = () =>{
+    for(let i = 0 ; i < 4 ; i++)
+      if(borad[i].includes("2"))
+        return false;
+    return true;
+  }
+
   useEffect(() => {
-    fillCells();
+    if(checkEmpty())
+      fillCells();  
   }, []);
 
   return (
     <div className="Game">
       <section className="grid">
-        {borad.map((r) => r.map((c) => <div className="div">{c}</div>))}
+        {borad.map((r) => r.map((c,i) => <div key={i} className="div">{c}</div>))}
       </section>
 </div>
 );

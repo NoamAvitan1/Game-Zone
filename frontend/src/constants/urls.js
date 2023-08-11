@@ -1,5 +1,5 @@
+//const API_URL = "https://long-ox-hat.cyclic.app";
 const API_URL = "https://long-ox-hat.cyclic.app";
-
 
 //* user
 const USER = API_URL + "/user";
