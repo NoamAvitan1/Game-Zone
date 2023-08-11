@@ -24,7 +24,7 @@ export default function PuzzleGameStart({level,image,setLevel}) {
     const [gameDone,setGameDone] = useState(null);
     const {user , updateXp} = useUser();
     const piecesRefs = [useRef(),useRef(),useRef(),useRef(),useRef(),useRef(),useRef(),useRef(),useRef()];
-
+    const [draging,setDraging] = useState(null);
     const initialGame = () => {
         let w = window.innerWidth / 2 - 80 + 10;
         let init = [
@@ -41,16 +41,18 @@ export default function PuzzleGameStart({level,image,setLevel}) {
         setPiecesArr([...init]);
     }
 
-    const checkPiece = (event,i) => {
+    const checkPiece = (e,i) => {
+        const eventX = e.clientX ? e.clientX : e.changedTouches[0].clientX ;
+        const eventY = e.clientY ? e.clientY : e.changedTouches[0].clientY ;
         const tx = piecesRefs[i].current.getBoundingClientRect().left + piecesArr[i].left;
         const ty = piecesRefs[i].current.getBoundingClientRect().top + piecesArr[i].top ;
-        if ((event.clientX > tx - 70 && event.clientX < tx + 70 )
-         && (event.clientY > ty - 70 && event.clientY < ty + 70 )) {
+        if ((eventX > tx - 70 && eventX < tx + 70 )
+         && (eventY > ty - 70 && eventY < ty + 70 )) {
             setTimeout(()=>{
                 let newPiecesArr = [...piecesArr];
                 piecesArr[i].found = true;
                 setPiecesArr(newPiecesArr);
-            },500);
+            },0);
         }
     }
 
@@ -82,23 +84,28 @@ export default function PuzzleGameStart({level,image,setLevel}) {
         <div className='PuzzleGameStart'>
             {gameDone && gameDone}
             
-            <div className="slice-images">
+            <div 
+                className="slice-images">
                 {piecesArr && piecesArr.map((p,i)=>(
-                    // <Draggable 
-                    //     key={i}
-                    //     // onDrag={(e)=>checkPiece(e,i)}
+                     <Draggable 
                         
-                    //     onStop={(e)=>checkPiece(e,i)}
-                    //     >
+                     key={i}
+                     // onDrag={(e)=>checkPiece(e,i)}
+              
+                     onStop={(e)=>checkPiece(e,i)}
+                     >
 
-                        <div 
+                    <div 
                         key={i}
                         draggable
-                        onDragStart={(e) => console.log(e)}
-                        onTouchStart={(e)=> console.log(e)}
+                        
+                        onDragStart={() => setDraging(i)}
+                        onTouchStart={()=> setDraging(i)}
+                        onDragEnd={(e)=>checkPiece(e,i)}
+                        onTouchEnd={(e)=>checkPiece(e,i)}
                         className='slice' 
                         style={{
-                            opacity:(p.found ? 0 : 1),
+                            opacity:(p.found || (draging == i && innerWidth > 600 ) ? 0 : 1),
                             WebkitMaskImage:`url(${p.piece})`,
                             WebkitMaskRepeat:'no-repeat',
                             maskImage:`url(${p.piece})`,
@@ -116,8 +123,9 @@ export default function PuzzleGameStart({level,image,setLevel}) {
                                         backgroundPosition:p.position
                                         }}>
                                 </div>
-                        </div> 
-                // </Draggable>
+                    </div> 
+                    </Draggable>
+                
                 ))}
             </div>
 
@@ -150,8 +158,12 @@ export default function PuzzleGameStart({level,image,setLevel}) {
                     )}
                 </div>
             </div>
+
         </div>
   )
 }
 
+/*
 
+                    // 
+*/
