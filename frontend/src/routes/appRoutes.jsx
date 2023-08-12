@@ -21,7 +21,7 @@ import ResetPassword from '../pages/resetPassword/resetPassword';
 import Payment from '../pages/payment/payment';
 import BreakOutGame from '../components/games/breakOutGame/breakOutGame';
 import Candy from '../components/games/CandyCrush/Candy';
-import Board from '../components/games/2048/board';
+import Board from '../components/games/2048/Board';
 import { Game } from '../components/games/2048/Game';
 
 
