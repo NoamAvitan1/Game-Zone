@@ -35,12 +35,15 @@
 
 .SudokuGameStart .exist-easy{
     background-color: lightgreen;
+    color: white;
 }
 .SudokuGameStart .exist-medium{
     background-color: lightsalmon;
+    color: white;
 }
 .SudokuGameStart .exist-hard{
     background-color: lightcoral;
+    color: white;
 }
 
 .SudokuGameStart .wrong-number{
