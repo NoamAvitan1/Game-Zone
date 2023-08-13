@@ -127,8 +127,8 @@ const loginUser = async (req, res) => {
     const { email, password } = req.body;
     let user = await User.login(email, password);
 
-    const refreshToken = generateToken({_id:user._id,role:user.role},"30m");
-    const accessToken = generateToken({_id:user._id,role:user.role},"1000m");
+    const refreshToken = generateToken({_id:user._id,role:user.role},"60m");
+    const accessToken = generateToken({_id:user._id,role:user.role},"15m");
 
     // res.cookie("refreshToken", refreshToken, {
     //   httpOnly: true,
@@ -168,8 +168,8 @@ const signUser = async (req, res) => {
     }
     let user = await User.signup(email, password, name);
 
-    const refreshToken = generateToken({_id:user._id,role:"user"},"30m");
-    const accessToken = generateToken({_id:user._id,role:"user"},"1000m");
+    const refreshToken = generateToken({_id:user._id,role:"user"},"60m");
+    const accessToken = generateToken({_id:user._id,role:"user"},"15m");
 
     // res.cookie("refreshToken", refreshToken, {
     //   httpOnly: true,
