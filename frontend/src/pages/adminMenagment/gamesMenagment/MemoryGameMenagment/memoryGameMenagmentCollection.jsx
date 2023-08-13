@@ -6,12 +6,13 @@ import './memoryGameMenagmentCollection.css';
 import EditMemoryGame from './editMemoryGame';
 //assets
 import {AiOutlineEdit} from 'react-icons/ai' 
+import SkeletonElement from '../../../../components/reusfullComponents/skeletons/skeletonElement';
 
 export default function MemoryGameMenagmentCollection({closeModal,openModal}) {
-    const {data,setMemoryGame} = UseMemoryGame();
+    const {data,setMemoryGame , loading , error} = UseMemoryGame();
   return (
     <div className='MemoryGameMenagmentCollection'>
-        {data && data.map((memory,i)=>(
+        {data ? data.map((memory,i)=>(
           <div className="memory-details-container" key={i} >
             <AiOutlineEdit onClick={()=>{
               setMemoryGame(memory);
@@ -52,7 +53,17 @@ export default function MemoryGameMenagmentCollection({closeModal,openModal}) {
           </div> 
 
           </div>
-        ))}
+        ))
+        : loading
+          ? Array(8).fill(0).map((_,i)=>(
+          <div 
+            key={i}
+            className="memory-details-skeleton">
+            <SkeletonElement type={"fit"} />
+          </div>
+          ))
+          : <div className="">{error}</div>
+      }
     </div>
   )
 }

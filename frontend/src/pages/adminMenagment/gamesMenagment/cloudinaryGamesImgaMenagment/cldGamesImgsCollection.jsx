@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import './cldGamesImgsCollection.css'
 import useCloudinaryImages from '../../../../hooks/useCloudinaryImages'
 import { deleteImageFromCloudinary } from '../../../../services/cloudinaryRequests';
-
+import SkeletonElement from '../../../../components/reusfullComponents/skeletons/skeletonElement'
 export default function CldGamesImgsCollection() {
-    const {data:imagesCollection , deleteImageFromGamesImgs} = useCloudinaryImages();
+    const {data:imagesCollection , deleteImageFromGamesImgs , loading , error} = useCloudinaryImages();
     const [showImg ,setShowImg] = useState(-1);
 
 
@@ -22,7 +22,7 @@ export default function CldGamesImgsCollection() {
     <div 
       onClick={()=>(showImg && setShowImg(-1))}
       className='CldGamesImgsCollection'>
-      {imagesCollection && imagesCollection.map((image,index)=>(
+      {imagesCollection ? imagesCollection.map((image,index)=>(
         <div 
           className="img-container"
           key={index}>
@@ -47,7 +47,18 @@ export default function CldGamesImgsCollection() {
 
         </div>
 
-      ))}
+      ))
+      : loading 
+        ? Array(12).fill(0)
+        .map((_,key)=>(
+          <div 
+            key={key}
+            className="img-container">
+            <SkeletonElement type={"fit"} />
+          </div>
+        ))
+        : <p>{error}</p>
+    }
     </div>
   )
 }

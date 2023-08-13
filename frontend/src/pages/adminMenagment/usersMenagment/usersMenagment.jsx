@@ -3,17 +3,21 @@ import "./usersMenagment.css";
 import useAdmin from "../../../hooks/useAdmin";
 import UsersTable from "./usersTable";
 import UsersSortNav from "./usersSortNav";
+import SkeletonElement from '../../../components/reusfullComponents/skeletons/skeletonElement';
 
 export default function UsersMenagment() {
   const [users, setUsers] = useState(null);
+  const [loading , setLoading] = useState(true);
+  const [error , setError] = useState(null);
   const { adminGetUsers} = useAdmin();
   const getUsers = async (sortObj) => {
     try {
-      console.log(sortObj);
       const data = await adminGetUsers(sortObj);
       setUsers(data);
-      console.log(data);
+      setLoading(false);
     } catch (error) {
+      setError(error);
+      setLoading(false);
       console.log(error);
     }
   };
@@ -22,12 +26,17 @@ export default function UsersMenagment() {
   }, []);
   return (
     <div className="UsersMenagment">
-      { users 
-        ? <UsersSortNav handleSort={getUsers} />
-        : <p></p>}
+      { users  &&  <UsersSortNav handleSort={getUsers} />}
       { users 
         ? <UsersTable users={users} />
-        : <h1>Table Skeleton</h1> } 
+        : 
+          <div className="UsersMenagment-skeleton">
+            { loading 
+                ? <SkeletonElement type={"fit"} />
+                : <p>{error}</p>
+            }
+          </div>
+        } 
     </div>
   );
 }

@@ -7,6 +7,11 @@
     background-color: var(--secondary);
     color: white;
 }
+.MemoryGameMenagmentCollection .memory-details-skeleton{
+    width: 90vw;
+    height: 30vh;
+    margin-bottom: 20px;
+}
 .MemoryGameMenagmentCollection .memory-details-container .headers{
     width: 100%;
     overflow-wrap: break-word;
