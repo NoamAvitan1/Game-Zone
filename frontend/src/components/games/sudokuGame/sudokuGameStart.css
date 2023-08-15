@@ -66,8 +66,9 @@
     color: white;
     font-size: 1rem;
     padding: 5px 10px;
-    border-radius: 50px;
-    margin-inline: 30vw;
+    border-radius: 40px;
+    margin-inline: 40vw;
+
 }
 
 @media(width > 700px){
