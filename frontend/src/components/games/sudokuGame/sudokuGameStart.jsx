@@ -39,11 +39,13 @@ export default function SudokuGameStart() {
                     return false;
         return true;
     }
+
     const checkSudoku = (template,row,col) => {
         return checkRow(template[row],col) && checkCol(template,col,row) && checkBox(template,row,col);     
     }
+
     const checkWinningSudoku = () => {
-        for (let i = 0; i < template.length; i++) 
+        for (let i = 0; i < 9 ; i++) 
             if(template[i].includes(0)) return false;
         
         return true;
