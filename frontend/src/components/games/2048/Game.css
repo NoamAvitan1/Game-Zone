@@ -12,8 +12,9 @@
 .Game .grid {
     display: flex;
     flex-wrap: wrap;
-    width: 400px;
-    height: 400px;
+    width: 450px;
+    height: 450px;
+    gap: 10px;
 }
 
 .Game .grid .div{
@@ -26,4 +27,5 @@
     display: flex;
     justify-content: center;
     border-radius: 10px;
+    align-items: center;
 }

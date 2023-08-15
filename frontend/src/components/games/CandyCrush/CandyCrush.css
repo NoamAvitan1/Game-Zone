@@ -8,16 +8,24 @@
     height: 750px;
 }
 
+
+.CandyCrush .section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .CandyCrush .game{
-    width: 445px;
-    height: 445px;
+    width: 400px;
+    height: 400px;
     display: flex;
     flex-wrap: wrap;
 }
 
 .CandyCrush .game .img{
-    width: 55px;
-    height: 55px;
+    width: 50px;
+    height: 50px;
     cursor: grab;
 }
 
@@ -51,7 +59,7 @@
     }
 }
 
-@media(width > 800px){
+/* @media(width > 800px){
     .CandyCrush .game{
         width: 560px;
         height: 560px;
@@ -60,9 +68,17 @@
         width: 70px;
         height: 70px;
     }
-}
+} */
 
 @media(width > 1000px){
+    .CandyCrush{
+        flex-direction: row-reverse;
+        justify-content: space-evenly;
+   }
+    .CandyCrush .section{
+        margin-top: -370px;
+    }
+
     .CandyCrush .game{
         width: 640px;
         height: 640px;

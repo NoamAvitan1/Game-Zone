@@ -7,6 +7,7 @@ import purpleCandy from '../../../assets/images/games/purple-candy.png'
 import redCandy from '../../../assets/images/games/red-candy.png'
 import yellowCandy from '../../../assets/images/games/yellow-candy.png'
 import blank from '../../../assets/images/games/blank.png'
+import Timer from "./Timer";
 
 
 export default function Candy() {
@@ -14,6 +15,8 @@ export default function Candy() {
   const [squareDrugged, setSquareDrugged] = useState(null);
   const [squareReplace, setSquareReplace] = useState(null);
   const [score,setScore] = useState(0);
+  const [toggle,setToggle] = useState(true);
+  const [isRotated, setIsRotated] = useState(true);
 
   const colors = [blueCandy, greenCandy, orangeCandy, purpleCandy, redCandy, yellowCandy];
 
@@ -102,29 +105,6 @@ export default function Candy() {
     }
   }
 
-  useEffect(() => {
-    createBoard();
-  }, []);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      checkForColumnOfFour();
-      checkForRowOfFour();
-      checkForColumnOfThree();
-      checkForRowOfThree();
-      moveIntoSquare();
-      setBoardColor([...boardColor]);
-    }, 100);
-    return () => clearInterval(timer);
-  }, [
-    checkForColumnOfFour,
-    checkForColumnOfThree,
-    checkForRowOfFour,
-    checkForRowOfThree,
-    moveIntoSquare,
-    boardColor,
-  ]);
-
   const dragStart = (e) => {
     setSquareDrugged(e.target);
   };
@@ -133,7 +113,7 @@ export default function Candy() {
     setSquareReplace(e.target);
   };
 
-  const dragEnd = (e) => {
+  const dragEnd = () => {
     const squareBeingDraggedId = parseInt(
       squareDrugged.getAttribute('data-id')
     );
@@ -152,17 +132,19 @@ export default function Candy() {
     ];
 
     const validMove = valid.includes(squareBeingReplacedId);
+    if(!validMove){
+      boardColor[squareBeingReplacedId] = squareReplace.getAttribute('src');
+      boardColor[squareBeingDraggedId] = squareDrugged.getAttribute('src');
+      setBoardColor([...boardColor]);
+     return alert("Impossible move")
+    }
 
     const colOfFour = checkForColumnOfFour();
     const rowOfFour = checkForRowOfFour();
     const colOfThree = checkForColumnOfThree();
     const rowOfThree = checkForRowOfThree();
 
-    if (
-      squareBeingReplacedId &&
-      validMove &&
-      (rowOfFour || rowOfThree || colOfFour || colOfThree)
-    ) {
+    if (rowOfFour || rowOfThree || colOfFour || colOfThree) {
       setSquareDrugged(null);
       setSquareReplace(null);
     } else {
@@ -173,9 +155,51 @@ export default function Candy() {
     }
   };
 
+  useEffect(() => {
+    createBoard();
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      checkForColumnOfFour();
+      checkForRowOfFour();
+      checkForColumnOfThree();
+      checkForRowOfThree();
+      moveIntoSquare();
+      setBoardColor([...boardColor]);
+    }, 100);
+    if(toggle){
+      setTimeout(() => {
+        setScore(0);
+        setToggle(false);
+      }, 800);
+    }
+    return () => clearInterval(timer);
+  }, [
+    checkForColumnOfFour,
+    checkForColumnOfThree,
+    checkForRowOfFour,
+    checkForRowOfThree,
+    moveIntoSquare,
+    boardColor,
+  ]);
+
+
+  useEffect(() => {
+    if(isRotated){
+      setTimeout(() => {
+        setIsRotated(false);
+      }, 10000);
+    }
+  },[])
+
   return (
     <div className="CandyCrush">
-      <div className="game">
+      <section className="section">
+      <Timer/>
+      <h2 className="score">Score:{score}</h2>
+      </section>
+      <section className="game">
         {boardColor.map((color, index) => (
           <img
             className="img"
@@ -192,8 +216,7 @@ export default function Candy() {
             onDrop={dragDrop}
           />
         ))}
-      </div>
-      <h2 className="score">Score:{score}</h2>
+      </section> 
     </div>
   );
 }
