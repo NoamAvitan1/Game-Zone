@@ -171,6 +171,7 @@ export default function Candy() {
       boardColor[squareBeingDraggedId] = squareDrugged.getAttribute('src');
       setBoardColor([...boardColor]);
     }
+    
   };
 
   return (
@@ -190,6 +191,7 @@ export default function Candy() {
             onDragLeave={(e) => e.preventDefault()}
             onDragEnd={dragEnd}
             onDrop={dragDrop}
+            
           />
         ))}
       </div>
