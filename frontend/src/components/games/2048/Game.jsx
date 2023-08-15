@@ -8,6 +8,7 @@ export const Game = () => {
       .map(() => Array(4).fill(null))
   );
 
+
   const rndCell = (cell) => {
     const nullz = [];
     for (let i = 0; i < 4; i++)
@@ -25,101 +26,64 @@ export const Game = () => {
     const a = rndCell();
     const b = rndCell(a);
     const newBoard = [...borad];
-    if (a) newBoard[a.row][a.col] = "2";
-    if (b) newBoard[b.row][b.col] = "2";
+    if (a) newBoard[a.row][a.col] = 2;
+    if (b) newBoard[b.row][b.col] = 2;
     setBoard(newBoard);
   };
 
   const checkEmpty = () => {
-    for (let i = 0; i < 4; i++) if (borad[i].includes("2")) return false;
+    for (let i = 0; i < 4; i++) if (borad[i].includes(2)) return false;
     return true;
   };
 
-
   const moveRight = () => {
-        let newArr = [];
-      for(let i = 0; i < 4; i++){
-        let array = [...borad[i]]
-        for(let j = 2; j >=0 ; j--){
-          if(j == 2){
-              if(array[j+1] == null){
-                array[j+1] = array[j];
-                array[j] = null;
-              }
-              else if(array[j+1] == array[j]){
-                array[j+1] = array[j] + array[j];
-              }
-              else{
-                continue;
-              }
+    let newArr = [];
+    for (let d = 0; d < 4; d++) {
+      let arr = [...borad[d]];
+      let i = 0;
+      let index;
+      for (i = 0; i < 3; i++) {
+        index = 0;
+        for (let j = 0, k = arr.length - i - 2; j < 1 + i; j++) {
+          if (arr[k + 1 + index] == null && arr[k + index] != null) {
+            arr[k + 1 + index] = arr[k + index];
+            arr[k + index] = null;
           }
-          if(j == 1){
-            if(array[j+1] == null){
-              array[j+1] = array[j];
-              array[j] = null;
-              if(array[j+2] == null){
-                array[j+2] = array[j+1];
-                array[j+1] = null;
-                continue;
-              }
-             if(array[j+2] == array[j+1]){
-                array[j+2] == array[j+1] + array[j+1];
-                array[j+1] = null;
-                continue;
-              }
-            }
-            if(array[j+1] == array[j]){
-              array[j+1] = array[j] + array[j];
-              array[j] = null;
-              if(array[j+2] == null){
-                array[j+2] = array[j+1];
-                array[j+1] = null;
-                continue;
-              }
-             if(array[j+2] == array[j+1]){
-                array[j+2] == array[j+1] + array[j+1];
-                array[j+1] = null;
-                continue;
-              }
-            }
+          if (arr[k + 1 + index] == arr[k + index] && arr[k + index] != null) {
+            arr[k + 1 + index] = arr[k + index] + arr[k + index];
+            arr[k + index] = null;
           }
-          if(j == 0){
-              
-          }
+          index++;
         }
-        newArr.push(arr)
       }
-      setBoard([...newArr]);
-  }
+      newArr.push(arr);
+    }
+    console.log(newArr);
+    const a = rndCell();
+    const newBoard = [...newArr];
+    if (a) newBoard[a.row][a.col] = 2;
+    console.log(newBoard);
+    setBoard(newBoard);
+  };
 
-  const moveLeft = () => {
+  const moveLeft = () => {};
 
-  }
+  const moveDown = () => {};
 
-  const moveDown = () => {
-
-  }
-
-  const moveUp = () => {
-
-  }
+  const moveUp = () => {};
 
   const handleKeyPress = (event) => {
     if (event.key === "ArrowRight") {
-      moveRight()
-      console.log("Key pressed:", event.key);
+      moveRight();
     }
     if (event.key === "ArrowDown") {
-      moveDown()
-      console.log("Key pressed:", event.key);
+      moveDown();
     }
     if (event.key === "ArrowLeft") {
-      moveLeft()
-      console.log("Key pressed:", event.key);
+      moveLeft();
     }
     if (event.key === "ArrowUp") {
-      moveUp()
-      console.log("Key pressed:", event.key);
+      moveUp();
     }
   };
 
@@ -133,11 +97,9 @@ export const Game = () => {
     };
   }, []);
 
-
   useEffect(() => {
-    if (checkEmpty()) fillCells();
+     fillCells();
   }, []);
-
 
   return (
     <div className="Game">
