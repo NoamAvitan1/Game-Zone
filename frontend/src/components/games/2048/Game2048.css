@@ -1,0 +1,106 @@
+.Game {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 630px;
+    width: 100%;
+    gap: 4px;
+}
+
+.Game .title{
+    margin-top: 12px;
+    color: var(--light-bg);
+    font-size: 50px;
+    font-style: italic;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+.Game .grid {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 360px;
+    height: 420px;
+    gap: 8px;
+}
+
+.Game .grid .div{
+    width: 80px;
+    height: 90px;
+    background-color: var(--primary);
+    background-image: var(--gradiant-primary);
+    font-size: 36px;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    align-items: center;
+    color: var(--light-bg);
+}
+
+
+.Game .score{
+    color: var(--light-bg);
+    font-size: 25px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+.Game .reset{
+    all: unset;
+    border: none;
+    background-color: var(--primary);
+    background-image: var(--gradiant-primary);
+    color: white;
+    font-size: 1rem;
+    border-radius: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+
+@media(width > 500px){
+    .Game .grid { 
+        width: 450px;
+        height: 450px;
+        gap: 8px;
+    }
+    .Game .grid .div{
+        width: 100px;
+        height: 100px;     
+    }
+    .Game .reset{
+        font-size: 1.5rem;
+    }
+    .Game .score{
+        font-size: 30px;
+    }
+}
+
+@media(width > 1000px){
+    .Game {
+       height: 670px;
+    }
+    .Game .grid { 
+        width: 500px;
+        height: 500px;
+        gap: 8px;
+    }
+    .Game .grid .div{
+        width: 110px;
+        height: 110px;   
+        font-size: 42px;  
+    }
+    .Game .reset{
+        font-size: 1.5rem;
+    }
+    .Game .score{
+        font-size: 30px;
+    }
+}
+
+
