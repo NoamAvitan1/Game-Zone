@@ -171,12 +171,6 @@ const signUser = async (req, res) => {
     const refreshToken = generateToken({_id:user._id,role:"user"},"60m");
     const accessToken = generateToken({_id:user._id,role:"user"},"15m");
 
-    // res.cookie("refreshToken", refreshToken, {
-    //   httpOnly: true,
-    //   sameSite: "none",
-    //   maxAge: 3600000,
-    //   secure: true,
-    // });
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
       sameSite: "none",
@@ -213,6 +207,7 @@ const updateUser = async (req, res) => {
     res.status(400).json({ error,location:"updateUser" });
   }
 };
+
 
 const updateUserPassword = async (req ,res) => {
   try {
