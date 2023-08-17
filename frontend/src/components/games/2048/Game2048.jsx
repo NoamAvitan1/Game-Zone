@@ -198,10 +198,12 @@ export const Game2048 = () => {
     fillCells(false);
   };
 
+
   const handleKeyPress = (event) => {
     if (winner) {
       return;
     }
+
     if (event.key === "ArrowRight") {
       moveRight();
     }
@@ -216,15 +218,38 @@ export const Game2048 = () => {
     }
   };
 
+  const handletouch = (start , end ) => {
+    let moveX = start.x - end.x;
+    let moveY = start.y - end.y;
+
+    if (Math.abs(moveX) > Math.abs(moveY)) {
+      return moveX > 0 ? moveLeft() : moveRight()
+    } else {
+      return moveY > 0 ? moveUp() : moveDown()
+    }
+  }
+
   useEffect(() => {
     const handleKeyDown = (event) => {
       handleKeyPress(event);
     };
     window.addEventListener("keydown", handleKeyDown);
+    
+    let start;
+    window.addEventListener('touchstart' ,(e) => 
+      start = {x:e.changedTouches[0].clientX , y:e.changedTouches[0].clientY}
+    );
+    window.addEventListener('touchend' ,(e) => {
+      handletouch(start , {x:e.changedTouches[0].clientX,y:e.changedTouches[0].clientY});
+    });
+
+
     return () => {
+      //window.removeEventListener('touchend',)
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
+
 
   useEffect(() => {
     fillCells();
