@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Game2048.css";
-
+import EndedGameAllert from '../../reusfullComponents/endedGameAllert/endedGameAllert';
+import useUser from '../../../hooks/useUser';
 export const Game2048 = () => {
   const [board, setBoard] = useState(
     Array(4)
@@ -9,7 +10,8 @@ export const Game2048 = () => {
   );
   const [score,setScore] = useState(0);
   const [winner,setWinner] = useState(false);
-
+  const [gameDone , setGameDone ] = useState(null);
+  const {user , updateXp} = useUser();
 
    const points = (p) => {
     setScore(prevScore => prevScore + p);
@@ -50,11 +52,14 @@ export const Game2048 = () => {
 
 
   const checkWinner = () => {
-        if(score >= 2048){
-           alert("congratulations you won!!")
-           return true;
-        }
-        return false;
+    let failed = true;
+    for (let i = 0; i < 4; i++) {
+      if(board[i].includes(2048))
+        return {winner , failed:false};
+      if(failed && board[i].includes(0))
+        failed = false;
+    }
+    return {winner:false , failed};
 }
   
 
@@ -206,26 +211,49 @@ export const Game2048 = () => {
 
 
   useEffect(() => {
-    let flag = checkWinner();
-    if(flag){
+    let {winner , failed} = checkWinner();
+    if (winner) {
+      if(user)
+        updateXp(score);
+      setGameDone(
+        <EndedGameAllert 
+          message={"Good Game"} 
+          xp={score} 
+          restart={()=>{
+            reset();
+            setGameDone(null);
+          }}/>)
       setWinner(true);
     }
+      
+    if (failed)
+      setGameDone(
+      <EndedGameAllert 
+        message={"Good Game"} 
+        xp={score} 
+        restart={()=>{
+          reset();
+          setGameDone(null);
+        }}/>)
   },[score])
 
 
   return (
     <div className="Game">
-      <h1 className="title">2048</h1>
+      {gameDone && gameDone}
+      <div className="score-container">
+        <div className="score">Score: {score}</div>
+        <h1 className="title">2048</h1>
+      </div>
       <section className="grid">
         {board.map((r) =>
           r.map((c, i) => (
-            <div key={i} className="div">
+            <div key={i} className="div" style={{backgroundColor:(c ? `hsl(${(c * 10)%360},50%,50%)` : 'var(--light-bg)')}}>
               {c}
             </div>
           ))
         )}
       </section>
-      <div className="score">Score: {score}</div>
        <div>
           <button onClick={()=>reset()} className="reset">Reset</button>
         </div>

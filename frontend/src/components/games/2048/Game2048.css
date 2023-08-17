@@ -17,6 +17,12 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+.Game .score-container{
+    width: 330px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
 
 .Game .grid {
     margin-top: 10px;
@@ -30,8 +36,8 @@
 .Game .grid .div{
     width: 80px;
     height: 90px;
-    background-color: var(--primary);
-    background-image: var(--gradiant-primary);
+    /* background-color: var(--primary);
+    background-image: var(--gradiant-primary); */
     font-size: 36px;
     text-align: center;
     font-weight: bold;
@@ -69,6 +75,9 @@
         height: 450px;
         gap: 8px;
     }
+    .Game .score-container{
+        width: 420px;
+    }
     .Game .grid .div{
         width: 100px;
         height: 100px;     
@@ -89,6 +98,9 @@
         width: 500px;
         height: 500px;
         gap: 8px;
+    }
+    .Game .score-container{
+        width: 420px;
     }
     .Game .grid .div{
         width: 110px;
