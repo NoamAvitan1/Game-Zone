@@ -177,9 +177,9 @@ export const Game2048 = () => {
 
 
   const handleKeyPress = (event) => { 
-    if(winner){
-      return;
-    }
+    // if(winner){
+    //   return;
+    // }
     if (event.key === "ArrowRight") {
       moveRight();
     }
