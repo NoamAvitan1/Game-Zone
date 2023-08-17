@@ -25,12 +25,29 @@ export const Game2048 = () => {
     }
   };
 
+
+  const checkFailed = () => {
+    let flag = true;
+    for(let i = 0; i < board.length; i++) {
+      for(let j = 0; j < board[i].length-1; j++){
+          if(!((board[j+1][i] != 0 && board[j][i] != null) && board[j][i] != board[j+1][i])){
+              flag = false;
+          }
+          if(!((board[i][j+1] != 0 && board[i][j] != null) && board[i][j] != board[i][j+1])){
+              flag = false;
+          }
+      }
+  }
+     return flag;
+  } 
+
   const reset = () => {
     for (let i = 0; i < board.length; i++) {
       for (let j = 0; j < board[i].length; j++) {
         board[i][j] = null;
       }
     }
+    setFailed(false);
     setScore(0);
     fillCells();
   };
@@ -56,10 +73,6 @@ export const Game2048 = () => {
     if (a) newBoard[a.row][a.col] = 2;
     if (empty && b) newBoard[b.row][b.col] = 2;
     setBoard(newBoard);
-    if (a || b) {
-      return true;
-    }
-    return false;
   };
 
   const checkWinner = () => {
@@ -99,8 +112,7 @@ export const Game2048 = () => {
       newArr.push(arr);
     }
     setBoard(newArr);
-    let flag = fillCells(false);
-    return flag;
+    fillCells(false);
   };
 
   const moveLeft = () => {
@@ -128,8 +140,8 @@ export const Game2048 = () => {
       newArr.push(arr);
     }
     setBoard(newArr);
-    let flag = fillCells(false);
-    return flag;
+    fillCells(false);
+
   };
 
   const moveDown = () => {
@@ -155,8 +167,7 @@ export const Game2048 = () => {
       }
     }
     setBoard(arr);
-    let flag = fillCells(false);
-    return flag;
+    fillCells(false);
   };
 
   const moveUp = () => {
@@ -184,29 +195,24 @@ export const Game2048 = () => {
       }
     }
     setBoard(arr);
-    let flag = fillCells(false);
-    return flag;
+    fillCells(false);
   };
 
   const handleKeyPress = (event) => {
-    let right, down, up, left;
     if (winner) {
       return;
     }
     if (event.key === "ArrowRight") {
-      right = moveRight();
+      moveRight();
     }
     if (event.key === "ArrowDown") {
-      down = moveDown();
+      moveDown();
     }
     if (event.key === "ArrowLeft") {
-      left = moveLeft();
+      moveLeft();
     }
     if (event.key === "ArrowUp") {
-      up = moveUp();
-    }
-    if (right && down && left && up) {
-      setFailed(true);
+      moveUp();
     }
   };
 
@@ -251,10 +257,13 @@ export const Game2048 = () => {
           }}
         />
       );
-  }, [score]);
+  }, [score,failed]);
 
 
   useEffect(() => {
+     if(checkFailed()){
+      setFailed(true)
+    }
       points();
   },[board])
 
