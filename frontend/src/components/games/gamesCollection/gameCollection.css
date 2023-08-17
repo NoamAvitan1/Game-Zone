@@ -179,6 +179,22 @@
     animation: 6s rotate linear infinite;
 }
 
+.GameCollection .game2048 {
+    background-image: url("https://res.cloudinary.com/dhojbnefp/image/upload/v1692282637/%D7%A6%D7%99%D7%9C%D7%95%D7%9D_%D7%9E%D7%A1%D7%9A_2023-08-17_%D7%91-16.23.53_rg9rw4.png");
+}
+.GameCollection .game2048:hover{
+    border: 5px solid #0000;
+    background:url("https://res.cloudinary.com/dhojbnefp/image/upload/v1692282637/%D7%A6%D7%99%D7%9C%D7%95%D7%9D_%D7%9E%D7%A1%D7%9A_2023-08-17_%D7%91-16.23.53_rg9rw4.png") padding-box, linear-gradient(
+          var(--angle),
+          var(--secondary),
+          #00bbff
+        ) border-box  ; 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    animation: 6s rotate linear infinite;
+}
+
 @media(width > 500px){
     .GameCollection{
         width: 85vw;
