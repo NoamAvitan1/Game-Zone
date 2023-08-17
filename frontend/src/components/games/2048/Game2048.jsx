@@ -56,7 +56,7 @@ export const Game2048 = () => {
     for (let i = 0; i < 4; i++) {
       if(board[i].includes(2048))
         return {winner , failed:false};
-      if(failed && board[i].includes(0))
+      if(failed && board[i].includes(null))
         failed = false;
     }
     return {winner:false , failed};
@@ -211,7 +211,9 @@ export const Game2048 = () => {
 
 
   useEffect(() => {
+    
     let {winner , failed} = checkWinner();
+    console.log({winner , failed});
     if (winner) {
       if(user)
         updateXp(score);
