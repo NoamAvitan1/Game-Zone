@@ -36,8 +36,6 @@
 .Game .grid .div{
     width: 80px;
     height: 90px;
-    /* background-color: var(--primary);
-    background-image: var(--gradiant-primary); */
     font-size: 36px;
     text-align: center;
     font-weight: bold;
