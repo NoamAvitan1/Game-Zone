@@ -22,6 +22,11 @@
     memoryGame : make the option to search for any subject user wants in pexels api
 11.
     main : create error reusfull component apply every api call
+12.
+    main : 
+        * add top players route
+        * create in userController get top 50 players that will 
+          return the users list with limit of 50 and sort by xp
 
 GAMES:
     *chess*

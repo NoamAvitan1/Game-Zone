@@ -245,7 +245,9 @@ export const Game2048 = () => {
 
 
     return () => {
-      //window.removeEventListener('touchend',)
+      window.removeEventListener('touchend',(e) => {
+        handletouch(start , {x:e.changedTouches[0].clientX,y:e.changedTouches[0].clientY});
+      });
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
