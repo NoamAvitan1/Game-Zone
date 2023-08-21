@@ -20,7 +20,7 @@ const usersList = async (req ,res) => {
     
     const users = await User
       .find(filter)
-      .sort({[sort]:1})
+      .sort({[sort]:-1})
       .limit(limit);
     res.status(200).json(users);
   }
