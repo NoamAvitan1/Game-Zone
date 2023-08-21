@@ -1,4 +1,4 @@
-// Server-side code (index.js)
+// Server-side code (server.js)
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
