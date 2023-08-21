@@ -8,7 +8,7 @@ export default function TopPlayers() {
     const {searchUser} = useUser();
     const getTopPlayers = async () => {
         try {
-            const players = await searchUser("",`?limit=${topAmount}&sort=xp`);
+            const players = await searchUser(`?limit=${topAmount}&sort=xp`);
             setPlayers(players);
         } catch (error) {
             console.log(error);

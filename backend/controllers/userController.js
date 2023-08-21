@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 
 const usersList = async (req ,res) => {
   try{
-    let filter =  {};
+    let filter = {};
     let name = req.query.name ;
     let sort = req.query.sort || "_id";
     let limit = req.query.limit || 50;
