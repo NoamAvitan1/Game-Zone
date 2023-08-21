@@ -6,6 +6,7 @@ import {useNavigate } from 'react-router-dom';
 import './userDropDownMenu.css';
 import SearchUsers from '../friends/searchUsers';
 import useUser from "../../hooks/useUser";
+import TopPlayers from '../players/topPlayers';
 
 
 export default function UserDropDownMenu({user:{email,name,role},getModal,closeMenu}) {
@@ -22,6 +23,10 @@ export default function UserDropDownMenu({user:{email,name,role},getModal,closeM
         }},
         {name:"Friends",to:"/account",function:()=>{
           getModal(<SearchUsers />);
+          closeMenu();
+        }},
+        {name:"Top Players",to:"/topPlayers",function:()=>{
+          getModal( <TopPlayers /> )
           closeMenu();
         }},
         {name:"LogOut",to:"/logout",function:()=>{
