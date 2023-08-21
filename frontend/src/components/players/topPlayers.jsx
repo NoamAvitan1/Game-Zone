@@ -31,7 +31,7 @@ export default function TopPlayers() {
             ))}
         </div>
         {players ? 
-            <div className="playersList">
+            <div className="TopPlayers-playersList">
                 <div className="places">
                     {Array(players.length).fill(0).map((_,place)=>(
                         <div className="place">{place}</div>

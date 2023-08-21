@@ -25,3 +25,10 @@
     background-color: var(--secondary);
     background-image: var(--gradiant-primary);
 }
+.TopPlayers-playersList{
+    display: grid;
+    grid-template-columns: repeat(10vw,70vw);
+}
+.TopPlayers-playersList > * {
+    border:1px solid white;
+}
