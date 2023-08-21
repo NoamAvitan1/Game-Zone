@@ -10,7 +10,7 @@ export default function SearchUsers() {
  
   const handleInput = async () => {
     try {
-      const usersSearched = await searchUser(searchInputRef.current.value);
+      const usersSearched = await searchUser(`?name=${searchInputRef.current.value}`);
       console.log(usersSearched);
       setUsers(usersSearched);
     } catch (error) {

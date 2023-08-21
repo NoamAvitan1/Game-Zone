@@ -27,9 +27,9 @@ export default function useUser() {
       dispatch(logout());
     }
 
-    const searchUser = async (name , query) => {
+    const searchUser = async (query) => {
       try {
-        const {data} = await apiGet(USERS_LIST + name + ( query ? query :""));
+        const {data} = await apiGet(USERS_LIST + query);
         return data;
       } catch (error) {
         console.log({error});
