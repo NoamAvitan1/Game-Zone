@@ -4,7 +4,6 @@ import './selectLevel.css';
 
 export default function SelectLevel({handleChoice,options,aditionalStyle}) {
     
-    console.log(options);
   return (
     <div 
       style={aditionalStyle ? aditionalStyle : {}}

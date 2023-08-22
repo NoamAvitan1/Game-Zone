@@ -12,11 +12,9 @@ export default function useUser() {
       try {
         if (user.role == "user") throw Error("unutherize");
         let url = ADMIN_GET_USERS;
-        console.log(queryObj);
         if (queryObj){
           url = url + "?";
           const {name,sort} = queryObj;
-          console.log({name,sort});
           if (sort){
             url = url + "sort=" + sort;
           } else {
@@ -27,9 +25,7 @@ export default function useUser() {
           }
 
         }
-        console.log(url);
         const response = await apiGet(url,{},true);
-        console.log(response);
         return response.data;
       } catch (error) {
         console.log(error);

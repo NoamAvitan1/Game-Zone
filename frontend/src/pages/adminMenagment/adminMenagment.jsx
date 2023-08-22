@@ -16,7 +16,6 @@ export default function AdminMenagment() {
         navigate("/");
       }
     },[error,user]);
-    console.log(error);
   return (<>
     {user && user.role == "admin" ? 
       <div className='AdminMenagment'>
