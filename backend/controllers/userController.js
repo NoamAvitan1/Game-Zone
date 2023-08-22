@@ -146,6 +146,12 @@ const loginUser = async (req, res) => {
       maxAge: 3600000,
       secure: true,
     });
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      sameSite: "none",
+      maxAge: 3600000,
+      secure: true,
+    });
 
     user.refresh_token = refreshToken;
     await user.save();
@@ -181,7 +187,12 @@ const signUser = async (req, res) => {
       maxAge: 3600000,
       secure: true,
     });
-
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      sameSite: "none",
+      maxAge: 3600000,
+      secure: true,
+    });
     user.refresh_token = refreshToken;
     await user.save();
 
