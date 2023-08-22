@@ -6,12 +6,22 @@ const bcrypt = require('bcrypt');
 
 const usersList = async (req ,res) => {
   try{
-    let name = req.params.name;
-    if(!name){
-      return res.status(400).json({ error: "Name is required" });
+    let filter = {};
+    let name = req.query.name ;
+    let sort = req.query.sort || "_id";
+    let limit = req.query.limit || 50;
+    // if(!name){
+    //   return res.status(400).json({ error: "Name is required" });
+    // }
+    if (name) {
+      filter.name = new RegExp(name,"i");
     }
-    name = new RegExp(name,"i");
-    const users = await User.find({name:name});
+
+    
+    const users = await User
+      .find(filter)
+      .sort({[sort]:-1})
+      .limit(limit);
     res.status(200).json(users);
   }
     catch(error){

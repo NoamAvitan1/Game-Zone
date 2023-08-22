@@ -11,7 +11,7 @@ const router = express.Router()
 router.get("/uploadImage",authentication,getSignature);
 
 //users List
-router.get("/usersList/:name",usersList);
+router.get("/usersList",usersList);
 
 //login route
 router.post('/login',validateLogin,loginUser)

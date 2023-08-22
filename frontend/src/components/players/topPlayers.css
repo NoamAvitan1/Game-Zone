@@ -1,0 +1,34 @@
+.TopPlayers{
+    background-color: var(--dark-bg);
+    height: 30vh;
+    width: 70vw;
+    padding: 30px 20px;
+    border-radius: 5px;
+}
+.TopPlayers-title{
+    color: var(--light-bg);
+    text-align: center;
+}
+.TopPlayers-nav{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3,33.3%);
+}
+.TopPlayers-nav-button {
+    background-color: transparent;
+    font-size: 30px;
+    color: white;
+    border:white 1px solid;
+}
+
+.TopPlayers-nav-button.selectedA{
+    background-color: var(--secondary);
+    background-image: var(--gradiant-primary);
+}
+.TopPlayers-playersList{
+    display: grid;
+    grid-template-columns: repeat(10vw,70vw);
+}
+.TopPlayers-playersList > * {
+    border:1px solid white;
+}
