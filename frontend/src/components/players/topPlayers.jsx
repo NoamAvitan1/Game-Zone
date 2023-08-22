@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './topPlayers.css';
 import UsersList from '../friends/usersList';
 import useUser from '../../hooks/useUser';
+import SkeletonElement from '../reusfullComponents/skeletons/skeletonElement';
 export default function TopPlayers() {
     const [ topAmount ,  setTopAmount ] = useState(10);
     const [ players , setPlayers ] = useState(null);
@@ -24,6 +25,7 @@ export default function TopPlayers() {
         <div className="TopPlayers-nav">
             {[10,30,50].map((amount,key)=>(
                 <button
+                    onClick={()=>setTopAmount(amount)}
                     key={key}
                     className={`TopPlayers-nav-button${topAmount == amount ? " selectedA" : ""}`}
                     > {amount}
@@ -32,14 +34,19 @@ export default function TopPlayers() {
         </div>
         {players ? 
             <div className="TopPlayers-playersList">
-                <div className="places">
+                <div className="TopPlayers-playersList-places">
                     {Array(players.length).fill(0).map((_,place)=>(
-                        <div className="place">{place}</div>
+                        <div className="TopPlayers-playersList-places-place" key={place}>#{place + 1}</div>
                     ))}
                 </div>
-                <UsersList users={players} />
+                <div className="TopPlayers-playersList-list">
+                    <UsersList includeSelf={true} users={players} />
+                </div>
             </div>
-            : <div className="">loading</div>
+            : <div 
+                className="TopPlayers-playersList-skeleton"
+                > 
+             </div>
         }
         
     </div>
