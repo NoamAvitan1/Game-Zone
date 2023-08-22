@@ -57,7 +57,7 @@ export default function Account() {
                 className='account-edit-icon'>
                 <AiOutlineEdit 
                   onClick={()=>{
-                    const m = useModal(<EditAccount/>,()=>setModal(null));
+                    const m = useModal(<EditAccount closeModal={()=>setModal(null)}/>,()=>setModal(null));
                     setModal(m);
                   }} 
                   />

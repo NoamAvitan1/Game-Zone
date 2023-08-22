@@ -4,7 +4,7 @@ import ImgDropInput from '../../components/reusfullComponents/imgDropInput/imgDr
 import useUser from '../../hooks/useUser';
 import {uploadImageToCloudinary} from '../../services/cloudinaryRequests';
 
-export default function EditAccount() {
+export default function EditAccount({closeModal}) {
     const {user,update} = useUser();
     const [imgInput,setImgInput] = useState(null);
     const [err,setErr] = useState(null);
@@ -13,9 +13,14 @@ export default function EditAccount() {
         if (!imgInput) return setErr("No image selected") ;
         try {
             await uploadImageToCloudinary([imgInput],"secure_url")
-                .then((res) => update({image:res[0]}));
+                .then((res) => 
+                {   
+                    update({image:res[0]});
+                    closeModal();
+                });
         } catch (error) {
             console.log(error);
+            closeModal();
             setErr(error);
         }
     }
