@@ -70,7 +70,7 @@ export const Game2048 = () => {
     let b = null;
     if (empty) b = rndCell(a);
     const newBoard = [...board];
-    if (a) newBoard[a.row][a.col] = 2;
+    if (a) newBoard[a.row][a.col] = (Math.random() > 0.5 ? 2 : 4);
     if (empty && b) newBoard[b.row][b.col] = 2;
     setBoard(newBoard);
   };
