@@ -17,8 +17,7 @@ export default function ProfileImgAndLevel({user,openUserMenu}) {
       setXpProgress((xp_riched/expected_xp)*100 * 1.45);
     }
   },[level,xp])
-
-console.log({image,level,xp,user});
+  
   return (
     <div className="ProfileImgAndLevel" onClick={()=>(openUserMenu && openUserMenu())}>
               <div className="profile-img-border">

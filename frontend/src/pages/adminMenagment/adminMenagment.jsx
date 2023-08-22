@@ -12,11 +12,10 @@ export default function AdminMenagment() {
     const menagment_options = ["Users","Games"];
     const navigate = useNavigate();
     useEffect(()=>{
-      if(error){
+      if(error || !user){
         navigate("/");
       }
-    },[error]);
-    console.log(error);
+    },[error,user]);
   return (<>
     {user && user.role == "admin" ? 
       <div className='AdminMenagment'>

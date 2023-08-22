@@ -18,7 +18,6 @@ export default function TopPlayers() {
     useEffect(()=>{
         getTopPlayers();
     },[topAmount]);
-    console.log(players);
   return (
     <div className='TopPlayers'>
         <h2 className='TopPlayers-title'>Top Players</h2>
