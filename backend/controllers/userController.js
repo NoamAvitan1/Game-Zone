@@ -261,11 +261,11 @@ const deleteUser = async (req, res) => {
 
 const logOut = async (req, res) => {
   try {
-    //  res.clearCookie("refreshToken",{
-    //   httpOnly: true,
-    //   sameSite: "none",
-    //   secure: true,
-    // });
+     res.clearCookie("refreshToken",{
+      httpOnly: true,
+      sameSite: "none",
+      secure: true,
+    });
      res.clearCookie("accessToken",{
       httpOnly: true,
       sameSite: "none",

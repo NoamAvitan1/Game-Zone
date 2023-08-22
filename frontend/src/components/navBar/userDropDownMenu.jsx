@@ -32,6 +32,7 @@ export default function UserDropDownMenu({user:{email,name,role},getModal,closeM
         {name:"LogOut",to:"/logout",function:()=>{
           userLogOut();
           closeMenu();
+          navigate('/')
         }}
       ];
 
