@@ -11,6 +11,7 @@ const authentication = async (req, res, next) => {
   try {
     // checking if the access token is valid
     const accessToken = req.cookies.accessToken;
+    const refreshToken  = req.cookies.refreshToken;
 
     if(accessToken){
         try {
@@ -28,39 +29,37 @@ const authentication = async (req, res, next) => {
         throw {...errorObject,type:"accessToken"};
     }
 
-
-    const {_id,role} = jwt.decode(accessToken);
-    const user = await User.findById(_id);
-    req._id = _id;
-    req.role = role;
-
-    if (user.refresh_token){
-        try {
-              // checking that the refresh token is not expired
-              jwt.verify(user.refresh_token, process.env.SECRET);
-        }
-        catch {
-              // if the refresh token expired the user will need to login again.
-              throw {...errorObject,type:"refresh"};
-        }
-    } else {
-        throw {...errorObject,type:"refresh"};
-    }  
-      // in case the refresh token is valid, 
-      //  we need to make a new access and refresh token
-      // and update in db
-
-      // creating a new refresh token
-      const newRefreshToken = generateToken({ _id , role }, "60m");
-
-      user.refresh_token = newRefreshToken;
-      user.save();
-
-    
-      // creating a new access token
-      const newAccessToken = generateToken({ _id, role }, "15m");
-      res.cookie('accessToken',newAccessToken);
-      next();
+    if(refreshToken) {
+       try {
+        const {_id,role} = jwt.verify(refreshToken, process.env.SECRET)
+        const user = await User.find({_id,refresh_token:refreshToken})
+        req._id = user._id;
+        req._role = role;
+        const newRefreshToken = generateToken({ _id , role }, "60m");
+        const newAccessToken = generateToken({ _id , role }, "15m");
+        user.refreshToken = newRefreshToken;
+        await user.save();
+        res.cookie("accessToken", newAccessToken, {
+            httpOnly: true,
+            sameSite: "none",
+            maxAge: 3600000,
+            secure: true,
+          });
+          res.cookie("refreshToken", newRefreshToken, {
+            httpOnly: true,
+            sameSite: "none",
+            maxAge: 3600000,
+            secure: true,
+          });
+       } catch (error) {
+        const {_id} = jwt.decode(refreshToken, process.env.SECRET);
+        const user = await User.findByIdAndUpdate({_id},{refresh_token:""});
+        throw {...errorObject,type:"RefershToken"};
+       }
+    }
+    else{
+        throw {...errorObject,type:"RefershToken"};
+    }
   }
   catch (error) {
       console.log({error,function:"authentication"});
