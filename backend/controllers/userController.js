@@ -144,13 +144,13 @@ const loginUser = async (req, res) => {
       httpOnly: true,
       sameSite: "none",
       maxAge: 3600000,
-      secure: true,
+      //secure: true,
     });
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       sameSite: "none",
       maxAge: 3600000,
-      secure: true,
+      //secure: true,
     });
 
     user.refresh_token = refreshToken;
