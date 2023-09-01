@@ -219,6 +219,9 @@ export const Game2048 = () => {
   };
 
   const handletouch = (start , end ) => {
+    if (winner) {
+      return;
+    }
     let moveX = start.x - end.x;
     let moveY = start.y - end.y;
 

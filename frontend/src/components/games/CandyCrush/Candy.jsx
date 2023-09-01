@@ -215,7 +215,6 @@ export default function Candy() {
             onDragLeave={(e) => e.preventDefault()}
             onDragEnd={dragEnd}
             onDrop={dragDrop}
-            
           />
         ))}
       </section> 
