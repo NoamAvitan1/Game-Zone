@@ -8,6 +8,7 @@ export default function TopPlayers() {
     const [ players , setPlayers ] = useState(null);
     const {searchUser} = useUser();
     const getTopPlayers = async () => {
+        console.log("get");
         try {
             const players = await searchUser(`?limit=${topAmount}&sort=xp`);
             setPlayers(players);
@@ -18,6 +19,7 @@ export default function TopPlayers() {
     useEffect(()=>{
         getTopPlayers();
     },[topAmount]);
+
   return (
     <div className='TopPlayers'>
         <h2 className='TopPlayers-title'>Top Players</h2>
@@ -39,7 +41,7 @@ export default function TopPlayers() {
                     ))}
                 </div>
                 <div className="TopPlayers-playersList-list">
-                    <UsersList includeSelf={true} users={players} />
+                    <UsersList reRender={()=>getTopPlayers()}  includeSelf={true} users={players} />
                 </div>
             </div>
             : <div 

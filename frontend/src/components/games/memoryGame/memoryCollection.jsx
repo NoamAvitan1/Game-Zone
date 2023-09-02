@@ -12,6 +12,7 @@ export default function MemoryCollection() {
     setMemoryGame(m);
     navigate(`/memoryGame/${m.name}`);
   }
+  console.log(memorycategories);
   return (
     <div className='MemoryCollection'>
       {memorycategories ? memorycategories.map((m,i)=>(

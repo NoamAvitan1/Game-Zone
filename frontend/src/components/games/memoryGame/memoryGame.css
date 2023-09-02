@@ -1,12 +1,20 @@
 .MemoryGame{
     position: relative;
     margin-top: 5vh;
-    padding-top: 4vh;
+    padding-top: 5vh;
     color: var(--light-bg);
 }
 .MemoryGame .navBack{
     color: var(--light-bg) !important;
 }
+/* .MemoryGame-titleAndInput{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: end;
+    width: 95vw;
+    margin: auto;
+} */
 .MemoryGame h1{
     position: absolute;
     top: 0px;
@@ -16,6 +24,6 @@
 @media(width > 700px){
     .MemoryGame{
         margin-top: 5vh;
-        padding-top: 2vh;
+        padding-top: 7vh;
     }
 }

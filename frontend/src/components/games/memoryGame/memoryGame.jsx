@@ -7,6 +7,7 @@ import NavBackButton from '../../reusfullComponents/navigateBackButton/navBackBu
 
 //style
 import './memoryGame.css';
+import MemoryInputSearch from './memoryInputSearch';
 
 
 
@@ -22,6 +23,7 @@ export default function MemoryGame() {
     <div className='MemoryGame'>
       <NavBackButton className="navBack" to={"/"}/>
       <h1>Memory Game</h1>
+      <MemoryInputSearch/>
       <MemoryCollection  /> 
     </div>
   )

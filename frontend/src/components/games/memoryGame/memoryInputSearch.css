@@ -1,0 +1,32 @@
+.MemoryInputSearch{
+    background-image: var(--gradiant-primary);
+    height: 20px;
+    padding: 2px;
+    border-radius: 5px;
+    position: relative;
+    width: 95vw;
+    margin: auto;
+}
+.MemoryInputSearch-input{
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: var(--dark-bg);
+    border-radius: 5px;
+    outline: none;
+    color: var(--light-bg);
+}
+.MemoryInputSearch-button{
+    position: absolute;
+    right: 2px;
+    top: 5px;
+    color: var(--light-bg);
+    background-color: transparent;
+    border: none;
+}
+
+@media (width > 500px){
+    .MemoryInputSearch{
+        width: 90vw;
+    }
+}

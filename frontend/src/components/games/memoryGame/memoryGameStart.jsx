@@ -27,7 +27,8 @@ export default function MemoryGameStart() {
     const [firstCard,setFirstCard] = useState(null);
     const [secondCard,setSecondCard] = useState(null);
     const [disabled,setDisabled] =  useState(false);
-
+    console.log({currentGame,memoryCards});
+    
 
     const updateMemoryCards = (data) => {
       const shuffledCardsArray = [...data,...data]
