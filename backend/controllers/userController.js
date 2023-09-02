@@ -43,7 +43,7 @@ const friendRequest = async (req, res) => {
     console.log(recipient.requests);
     const exist = recipient.requests.find((i) =>i.toString() === senderId.toString());
     if (exist) {
-      recipient.requests = recipient.requests.filter((i) => i.toString !== senderId.toString());
+      recipient.requests = recipient.requests.filter((i) => i.toString() !== senderId.toString());
       await recipient.save();
       return res.status(202).json({message:"Declined friend request"})
     } else {
