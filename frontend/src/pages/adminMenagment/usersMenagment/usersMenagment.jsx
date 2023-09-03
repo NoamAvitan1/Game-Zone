@@ -18,7 +18,6 @@ export default function UsersMenagment() {
     } catch (error) {
       setError(error);
       setLoading(false);
-      console.log(error);
     }
   };
   useEffect(() => {

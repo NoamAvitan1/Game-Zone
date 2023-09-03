@@ -39,16 +39,3 @@ export default function UseCloudinaryImages() {
     selectPage
   };
 }
-/**
- *     const deleteImageFromGamesImgs = async (id) => {
-      try {
-        const response = await apiDelete(DELETE_CLOUDINARY_GAMES_IMG + id);
-        if (response.statusText == "OK") {
-          dispatch(removeImage(id));
-        }
-        console.log(response);
-      } catch (error) {
-        console.log(error);
-      }
-    }
- */

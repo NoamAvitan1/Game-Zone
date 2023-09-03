@@ -19,11 +19,9 @@ export default function UsersTable({users}) {
 
   const deleteUser = (content) => {
     adminDeleteUsers(content._id);
-    console.log(content._id);
   }
 
   const getModal = (content) => {
-    console.log(content);
     const m = useModal(content,()=>setModal(null));
     setModal(m);
   }

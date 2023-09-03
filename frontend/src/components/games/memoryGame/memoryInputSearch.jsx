@@ -35,7 +35,6 @@ export default function MemoryInputSearch() {
                 });
             navigate(`/memoryGame/${search}`);
         } catch (error) {
-            console.log(error);
             const m = useModal(
                 <ErrorMessage
                     message={"Sorry we could not find category for this keyword , please try a different name"} />

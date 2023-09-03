@@ -26,9 +26,7 @@ export default function MemoryGameStart() {
     const [turns,setTurns] = useState(0);
     const [firstCard,setFirstCard] = useState(null);
     const [secondCard,setSecondCard] = useState(null);
-    const [disabled,setDisabled] =  useState(false);
-    console.log({currentGame,memoryCards});
-    
+    const [disabled,setDisabled] =  useState(false);    
 
     const updateMemoryCards = (data) => {
       const shuffledCardsArray = [...data,...data]
@@ -63,7 +61,6 @@ export default function MemoryGameStart() {
         setLoading(false);
       } catch (error) {
         setError(error);
-        console.log(error);
       }
     }
 
@@ -157,8 +154,6 @@ export default function MemoryGameStart() {
       }
     },[memoryCards])
 
-    console.log(loading);
-    console.log(level);
 
   return (
     <div className='MemoryGameStart'>

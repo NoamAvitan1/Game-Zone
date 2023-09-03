@@ -15,8 +15,6 @@ export default function EditMemoryGame({closeModal}) {
   const [api,setApi] = useState("");
   const [error,setError] = useState(null);
 
-  console.log({keys,img_keys,headers,img_url,api,name});
-  console.log(currentGame);
 
   const updateGame = async (game) => {
     if (game.name.length < 1) return setError({type:"name",msg:"Name is required !"});
@@ -32,10 +30,8 @@ export default function EditMemoryGame({closeModal}) {
         closeModal();
       }); 
     } catch (error) {
-      console.log(error);
       setError({type:"BackgroundImage",msg:"Faild to upload img"});
     }
-    console.log(game);
   }
 
   useEffect(()=>{

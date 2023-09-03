@@ -12,7 +12,6 @@ export default function CldGamesImgsCollection() {
       const public_id = name.substring(0, name.lastIndexOf('.'));
       try {
         const {result} = await deleteImageFromCloudinary(public_id);
-        console.log(result);
         if (result == "ok") deleteImageFromGamesImgs(id);
       } catch (error) {
         console.log(error);

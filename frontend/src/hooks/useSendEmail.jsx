@@ -10,7 +10,6 @@ export default function UseSendEmail () {
     Subject : `${title}`,
     Body : `${body}`
     }).then((message) => {
-            console.log(message);
             return message;
         }
     ).catch((err)=>{

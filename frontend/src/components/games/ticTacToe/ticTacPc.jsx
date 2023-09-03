@@ -87,7 +87,6 @@ export default function TicTacPc() {
       while (board[rnd] !== null) {
         rnd = Math.floor(Math.random() * 9);
       }
-      console.log(rnd);
       setBoard((prev) => prev.map((square, i) => (i === rnd ? move : square)));
       return true;
     }

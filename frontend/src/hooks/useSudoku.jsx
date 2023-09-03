@@ -23,7 +23,6 @@ export default function useSudoku() {
     const addSudokuTemplate = async (sudoku) => {
         try {
             const response = await apiPost(Add_SUDOKU_TEMPLATE,sudoku);
-            console.log(response.data);
             return response;
         } catch (error) {
             console.log(error);

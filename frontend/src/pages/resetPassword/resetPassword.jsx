@@ -36,12 +36,10 @@ export default function ResetPassword() {
     useEffect(()=>{
         setGeneratedKey((Math.random(0,9999)*10000).toFixed(0));
     },[])
-    console.log(generatedKey);
 
     
     const resetPassword = async (password) => {
         try {
-            console.log({password,email:emailSent});
             const res = await apiPost(RESET_USER_PASSWORD,{password,email:emailSent});
             if (res.status >= 200 && res.status < 300) navigate("/");
         } catch (error) {

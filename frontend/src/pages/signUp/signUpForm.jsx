@@ -19,7 +19,6 @@ export default function SignUpForm({ updateModal,closeModal }) {
   const [show_password,setShowPassord] = useState(false);
 
   const hundleSignUp = (data) => {
-    console.log(data);
     signUpUser(data);
     reset();
   };

@@ -19,7 +19,6 @@ export default function EditAccount({closeModal}) {
                     closeModal();
                 });
         } catch (error) {
-            console.log(error);
             closeModal();
             setErr(error);
         }

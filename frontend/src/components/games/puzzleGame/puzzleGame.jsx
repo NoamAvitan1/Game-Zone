@@ -21,7 +21,6 @@ export default function PuzzleGame() {
   const {currentImage,setImage,page,pages,selectPage} = useCloudinaryImages();
   const [level,setLevel] = useState(null);
   const navigate = useNavigate();
-  console.log(box_size);
   
 
   const updatePuzzleImage = () => {
@@ -32,7 +31,6 @@ export default function PuzzleGame() {
     try {
       const resizedImageBlob = await resizeImage(img,box_size,box_size);
       const resizedImage = URL.createObjectURL(resizedImageBlob);
-      console.log(resizedImage);
       setPuzzleImage(resizedImage);
     } catch (error) {
       console.log(error);
@@ -74,36 +72,3 @@ export default function PuzzleGame() {
   )
 }
 
-// import React, { useEffect, useState } from 'react'
-// //style
-// import './slidePuzzleGame.css'
-
-
-
-
-
-// export default function SlidePuzzleGame() {
-
-
-  
-
-//   console.log({currentImage,puzzle_image});
-//   return (
-//     <div className='SlidePuzzleGame' >
-//       {puzzle_image
-//         ? 
-//           <div>
-//             <NavBackButton className="navBack" onClick={() => setPuzzleImage(null)}/>
-//             <SlidePuzzleStartGame image={puzzle_image} box_size={box_size} />
-//           </div>
-          
-//         : <div >
-//             <NavBackButton className="navBack" />
-//             <SlidePuzzleImgInput handleImageChange={handleImageChange} />
-//             <SlidePuzzleCollection  />
-//             <Pagination page={page} pages={pages} setPage={(p)=>selectPage(p)} />
-//           </div>
-//         }
-//     </div>
-//   )
-// }

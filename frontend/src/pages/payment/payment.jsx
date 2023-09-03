@@ -14,7 +14,6 @@ export default function Payment() {
 
   const choosePrice = (price) => {
     setValue(price.substring(0, price.length - 1));
-    console.log(value);
   };
 
   return (
