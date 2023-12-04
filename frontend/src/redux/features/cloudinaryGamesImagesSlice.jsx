@@ -25,7 +25,6 @@ export const countCloudinaryGamesImages = createAsyncThunk('cloudinaryGamesImage
 export const deleteCloudinaryGamesImage = createAsyncThunk('cloudinaryGamesImages/deleteCloudinaryGamesImage', async (payload) => {
   try {
     const response = await apiDelete(DELETE_CLOUDINARY_GAMES_IMG + payload);
-    console.log(response);
     return payload;
   } catch (error) {
     // Handle any errors that occurred during the API request
@@ -34,9 +33,7 @@ export const deleteCloudinaryGamesImage = createAsyncThunk('cloudinaryGamesImage
 });
 export const addCloudinaryGamesImage = createAsyncThunk('cloudinaryGamesImages/addCloudinaryGamesImage', async (payload) => {
   try {
-    console.log(payload);
     const response = await apiPost(ADD_CLOUDINARY_GAMES_IMG,payload);
-    console.log(response);
     return response.data;
   } catch (error) {
     // Handle any errors that occurred during the API request

@@ -22,7 +22,6 @@ export default function SlidePuzzleGame() {
   const box_size = window.innerWidth < 600 ? 300 : 600; 
   const {currentImage,setImage,page,pages,selectPage} = useCloudinaryImages();
   const navigate = useNavigate();
-  console.log(box_size);
   
 
   const updatePuzzleImage = () => {
@@ -33,7 +32,6 @@ export default function SlidePuzzleGame() {
     try {
       const resizedImageBlob = await resizeImage(img,box_size,box_size);
       const resizedImage = URL.createObjectURL(resizedImageBlob);
-      console.log(resizedImage);
       setPuzzleImage(resizedImage);
     } catch (error) {
       console.log(error);
@@ -48,7 +46,6 @@ export default function SlidePuzzleGame() {
 
   
 
-  console.log({currentImage,puzzle_image});
   return (
     <div className='SlidePuzzleGame' >
       {puzzle_image
@@ -79,46 +76,3 @@ export default function SlidePuzzleGame() {
   )
 }
 
-/*
-
-*/
-/**
-
-
- */
-  
-
-/*
-import Resizer from 'react-image-file-resizer';
-
-
-
-*/
-
-  // const resizeFile = (file) =>
-  // new Promise((resolve) => {
-  //   Resizer.imageFileResizer(
-  //     file,
-  //     300,
-  //     300,
-  //     "JPEG",
-  //     100,
-  //     0,
-  //     (uri) => {
-  //       console.log(uri);
-  //       resolve(uri);
-  //     },
-  //     "base64",
-  //     300,
-  //     300
-  //   );
-  // });
-
-  // const resizeImage = async () => {
-  //   try {
-  //     const new_img = await resizeFile(image)
-  //     setPuzzleImage(new_img);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }

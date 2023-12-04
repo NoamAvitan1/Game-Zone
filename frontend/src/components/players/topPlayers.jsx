@@ -18,6 +18,7 @@ export default function TopPlayers() {
     useEffect(()=>{
         getTopPlayers();
     },[topAmount]);
+
   return (
     <div className='TopPlayers'>
         <h2 className='TopPlayers-title'>Top Players</h2>
@@ -39,7 +40,7 @@ export default function TopPlayers() {
                     ))}
                 </div>
                 <div className="TopPlayers-playersList-list">
-                    <UsersList includeSelf={true} users={players} />
+                    <UsersList reRender={()=>getTopPlayers()}  includeSelf={true} users={players} />
                 </div>
             </div>
             : <div 

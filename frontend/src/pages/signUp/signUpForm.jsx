@@ -20,7 +20,7 @@ export default function SignUpForm({ updateModal, closeModal }) {
 
   const password = watch("password"); // Get the value of the password field
 
-  const handleSignUp = (data) => {
+  const hundleSignUp = (data) => {
     console.log(data);
     signUpUser(data);
     reset();

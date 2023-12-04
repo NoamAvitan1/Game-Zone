@@ -84,7 +84,6 @@ export default function BreakOutGameBoard({gameEnded , level}) {
             // check if losed
             if (player.lives <= 0){ 
               gameEnded(player.score,"Game Over");
-              console.log("game over");
             };
 
 
@@ -109,7 +108,6 @@ export default function BreakOutGameBoard({gameEnded , level}) {
               brickCollision = BrickCollision(ballObj, bricks[i]);
             
               if (brickCollision.hit && !bricks[i].broke) {
-                // console.log(brickCollision);
                 if (brickCollision.axis === "X") {
                   ballObj.dx *= -1;
                   bricks[i].broke = true;
@@ -139,7 +137,6 @@ export default function BreakOutGameBoard({gameEnded , level}) {
             }else{
               if (player.lives <= 0){ 
                 gameEnded(player.score,"Game Over");
-                console.log("game over");
               };
               if (winningCheck()) gameEnded(player.score,"Good Game !");
             };
@@ -150,7 +147,6 @@ export default function BreakOutGameBoard({gameEnded , level}) {
         }else{
           if (player.lives <= 0){ 
             gameEnded(player.score,"Game Over");
-            console.log("game over");
           };
           if (winningCheck()) gameEnded(player.score,"Good Game !");
         };

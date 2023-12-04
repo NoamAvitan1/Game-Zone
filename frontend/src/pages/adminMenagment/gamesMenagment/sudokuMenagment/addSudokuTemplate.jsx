@@ -31,7 +31,6 @@ export default function AddSudokuTemplate({closeModal}) {
       }
     } catch (error) {
       setError(error.message);
-      console.log(error);
     }
   }
   return (

@@ -53,11 +53,13 @@ export default function SlidePuzzleStartGame({image,box_size}) {
   
     //initialize the images array after shuffle
     useEffect(()=>{
-      if (initial) {
-        let startArray = [...initial.sort(()=>Math.random() - 0.5)];
-        startArray.push("empty");
-        setImagesArr(startArray);
-      }
+      if (!initial) 
+        return;
+      
+      let startArray = [...initial.sort(()=> Math.random() - 0.5 )];
+      startArray.push("empty");
+      setImagesArr(startArray);
+      
     },[initial]);
 
     //check if user has won
@@ -73,7 +75,7 @@ export default function SlidePuzzleStartGame({image,box_size}) {
 
     // move image
     const moveImage = (n,i) => {
-        if (i+1 == empty || i-1 == empty || i+Math.sqrt(imagesArr.length) == empty || i-Math.sqrt(imagesArr.length) == empty) {
+        if (i + 1 == empty || i-1 == empty || i + Math.sqrt(imagesArr.length) == empty || i-Math.sqrt(imagesArr.length) == empty) {
           let arr = [...imagesArr];
           arr[i] = arr[empty];
           arr[empty] = n;
@@ -88,26 +90,17 @@ export default function SlidePuzzleStartGame({image,box_size}) {
       useEffect(()=>{
         if (!imagesArr) return;
         if (checkWinning()) {
-          if (user) {
+          if (user) 
             updateXp(templates[level].revard);
-            setGameDone(
-              <EndedGameAllert 
-                message={"Good Game!"} 
-                xp={templates[level].revard} 
-                restart={()=>{
-                  setLevel(null);
-                  setGameDone(null);
-                }} />);
-          } else {
-            setGameDone(
-              <EndedGameAllert 
-                message={"Good Game!"} 
-                xp={templates[level].revard} 
-                restart={()=>{
-                  setLevel(null);
-                  setGameDone(null);
-                }} />);
-          }
+
+          setGameDone(
+            <EndedGameAllert 
+              message={"Good Game!"} 
+              xp={templates[level].revard} 
+              restart={()=>{
+                setLevel(null);
+                setGameDone(null);
+              }} />);
         }
       },[empty])
 
@@ -124,6 +117,7 @@ export default function SlidePuzzleStartGame({image,box_size}) {
           key={i}
           onClick={()=>moveImage(position,i)}
           disabled={i == empty}
+          
           style={
               i == empty 
               ?   {height:box_size/Math.sqrt(imagesArr.length),width:box_size/Math.sqrt(imagesArr.length)}

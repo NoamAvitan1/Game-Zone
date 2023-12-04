@@ -14,7 +14,6 @@ export default function AddMemoryGame({closeModal}) {
   const [api,setApi] = useState("");
   const {addMemory} = UseMemoryGame();
   const [error,setError] = useState(null);
-  console.log({keys,img_keys,headers,img_url,api,name});
 
 
   const addGame = async (game) => {
@@ -30,7 +29,6 @@ export default function AddMemoryGame({closeModal}) {
       console.log(error);
       setError({type:"BackgroundImage",msg:"Faild to upload img"});
     }
-    console.log(game);
   }
   return (
     <div className='AddMemoryGame'>

@@ -9,7 +9,6 @@ import UseCloudinaryImages from '../../../../hooks/useCloudinaryImages';
 
 export default function AddImageInput({closeModal}) {
   const [images,setImages] = useState([]);
-  console.log(images);
   const {addImageToGamesImgs} = UseCloudinaryImages();
   const handleSubmit = async (imagesArr) => {
       try {
@@ -23,7 +22,6 @@ export default function AddImageInput({closeModal}) {
         if (res.length > 0) {
           closeModal();
         }
-        console.log(res);
       } catch (error) {
         console.log(error);
       }

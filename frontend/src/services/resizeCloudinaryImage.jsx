@@ -15,7 +15,6 @@ export const resizeCloudinaryImage = (route,width,height) => {
         .quality('auto')
         .format('auto')
         .toURL();
-        console.log(resized_image);
         const index = resized_image.indexOf('?');
         if (index !== -1) {
           return resized_image.substring(0, index);
