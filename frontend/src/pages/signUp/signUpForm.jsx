@@ -3,32 +3,34 @@ import { useForm } from "react-hook-form";
 import LogInForm from "../logIn/logInForm";
 import "./signUpForm.css";
 import useUser from "../../hooks/useUser";
-import {AiOutlineEyeInvisible,AiOutlineEye,AiFillLock,AiOutlineMail,AiOutlineUser} from 'react-icons/ai';
+import { AiOutlineEyeInvisible, AiOutlineEye, AiFillLock, AiOutlineMail, AiOutlineUser } from 'react-icons/ai';
 
-
-export default function SignUpForm({ updateModal,closeModal }) {
+export default function SignUpForm({ updateModal, closeModal }) {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
+    watch, // Add the watch function to watch the confirm password field
   } = useForm();
-  const {user,error,loading,signUpUser} = useUser();
+  const { user, error, loading, signUpUser } = useUser();
   const nameRegex = /^[a-zA-Z ]+$/;
   const emailAlphabet = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-  const [show_password,setShowPassord] = useState(false);
+  const [show_password, setShowPassword] = useState(false);
 
-  const hundleSignUp = (data) => {
+  const password = watch("password"); // Get the value of the password field
+
+  const handleSignUp = (data) => {
     console.log(data);
     signUpUser(data);
     reset();
   };
 
   useEffect(() => {
-    if(user){
+    if (user) {
       closeModal();
     }
-  },[user]);
+  }, [user]);
 
   return (
     <div className="SignUpForm">
@@ -41,12 +43,10 @@ export default function SignUpForm({ updateModal,closeModal }) {
           /LogIn
         </button>
       </div>
-      <form onSubmit={handleSubmit(hundleSignUp)} className="signUp-form">
-
-        
+      <form onSubmit={handleSubmit(handleSignUp)} className="signUp-form">
         <label>Name</label>
         <div className="input">
-        <AiOutlineUser className="user-icon"/>
+          <AiOutlineUser className="user-icon" />
           <input
             {...register("name", {
               required: { value: true, message: "Name is Required..." },
@@ -62,11 +62,11 @@ export default function SignUpForm({ updateModal,closeModal }) {
           />
         </div>
         <div className="error-client">
-        {errors.name && <p>{errors.name.message}</p>}
+          {errors.name && <p>{errors.name.message}</p>}
         </div>
         <label>Email</label>
         <div className="input">
-        <AiOutlineMail className="email-icon" />
+          <AiOutlineMail className="email-icon" />
           <input
             {...register("email", {
               required: { value: true, message: "Email is Required..." },
@@ -81,17 +81,15 @@ export default function SignUpForm({ updateModal,closeModal }) {
             type="text"
           />
         </div>
-
         <div className="error-client">
-        {errors.email && <p>{errors.email.message}</p>}
+          {errors.email && <p>{errors.email.message}</p>}
         </div>
         <label>Password</label>
         <div className="input">
-        {show_password
-          ? <AiOutlineEye className="eye-icon" onClick={() => setShowPassord(false)}   /> 
-          : <AiOutlineEyeInvisible className="eye-icon" onClick={()=>setShowPassord(true)}  /> }
-        
-        <AiFillLock className="lock-icon" />
+          {show_password
+            ? <AiOutlineEye className="eye-icon" onClick={() => setShowPassword(false)} />
+            : <AiOutlineEyeInvisible className="eye-icon" onClick={() => setShowPassword(true)} />}
+          <AiFillLock className="lock-icon" />
           <input
             {...register("password", {
               required: { value: true, message: "Password is Required..." },
@@ -102,9 +100,23 @@ export default function SignUpForm({ updateModal,closeModal }) {
             placeholder="Type Password.."
           />
         </div>
-
         <div className="error-client">
-        {errors.password && <p>{errors.password.message}</p>}
+          {errors.password && <p>{errors.password.message}</p>}
+        </div>
+        <label>Confirm Password</label>
+        <div className="input">
+          <AiFillLock className="lock-icon" />
+          <input
+            {...register("confirmPassword", {
+              required: { value: true, message: "Confirm Password is Required..." },
+              validate: (value) => value === password || "Passwords do not match", // Validate that it matches the original password
+            })}
+            type="password"
+            placeholder="Confirm Password.."
+          />
+        </div>
+        <div className="error-client">
+          {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
         </div>
         {<div className="error-server">
           <p>{error}</p>
