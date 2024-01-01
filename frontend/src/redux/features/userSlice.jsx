@@ -89,12 +89,10 @@ const userSlice = createSlice({
         state.loading = true;
     })
     .addCase(login.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.user = action.payload;
         state.loading = false;
     })
     .addCase(login.rejected, (state, action) => {
-        console.log(action.error.message);
         state.error = action.error.message;
         state.loading = false;
     }) 
