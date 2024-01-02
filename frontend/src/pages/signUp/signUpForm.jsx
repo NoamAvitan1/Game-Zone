@@ -21,6 +21,7 @@ export default function SignUpForm({ updateModal, closeModal }) {
   const password = watch("password"); // Get the value of the password field
 
   const handleSignUp = (data) => {
+    delete data.confirmPassword;
     signUpUser(data);
     reset();
   };
@@ -42,7 +43,7 @@ export default function SignUpForm({ updateModal, closeModal }) {
           /LogIn
         </button>
       </div>
-      <form onSubmit={(e) => handleSignUp(e)} className="signUp-form">
+      <form onSubmit={handleSubmit(handleSignUp)} className="signUp-form">
         <label>Name</label>
         <div className="input">
           <AiOutlineUser className="user-icon" />
